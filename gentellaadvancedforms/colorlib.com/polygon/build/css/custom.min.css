@@ -838,6 +838,9 @@
   margin-left: 70px;
   z-index: 2;
 }
+.right {
+  float: right;
+}
 .nav-sm .navbar.nav_title {
   width: 70px;
 }
