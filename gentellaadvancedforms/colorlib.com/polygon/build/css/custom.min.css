@@ -838,6 +838,9 @@
   margin-left: 70px;
   z-index: 2;
 }
+.right {
+  float: right;
+}
 .nav-sm .navbar.nav_title {
   width: 70px;
 }
@@ -5160,4 +5163,8 @@ ul.notifications {
 }
 .calendar-exibit .calendar-table {
   padding: 0 0 4px 0;
+}
+.gg {
+  width: 153px;
+  height: 68px;
 }
