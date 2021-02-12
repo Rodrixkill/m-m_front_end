@@ -137,11 +137,22 @@
                 <div class="x_content">  
                     <div class="col-md-6">
                         <label for="empresa">Empresa:</label>
-                        <select id="empresa" class="form-control" required>
-                            <option value="">2020</option>
-                            <option value="press">Press</option>
-                            <option value="net">Internet</option>
-                            <option value="mouth">Word of mouth</option>
+                        <select id="empresa" class="form-control">
+                          <?php
+                          $opts = array(
+                              'http' => array(
+                                  'method' => "GET",
+                                  'header' => "X-JWT-Token: " . $_SESSION['TOKEN']
+                              )
+                          );
+                          
+                          $context = stream_context_create($opts);
+                          $x = file_get_contents("http://sistema.mym.com.bo:4000/empresa/", false, $context);
+                          $someArray = json_decode($x, true);
+                          foreach ($someArray as $key => $value) {
+                              echo "<option value=\"" . $value["id"] . "\">" . $value["razon_social"] . "</option>";
+                          }
+                          ?>
                         </select>
                     </div>
                     
@@ -156,46 +167,47 @@
                     <button type="button" class="btn btn-round btn-warning right">
                     Inactivar Cuentas
                     </button>
-
-                    <table id="datatable-checkbox"
-                    class="table table-bordered bulk_action"
-                    style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Nº Documento</th>
-                            <th>Nombre y Apellidos</th>
-                            <th>Correo</th>
-                            <th>Telefono</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>3434534</td>
-                            <td>Juana Maria Perez</td>
-                            <td>jperez@soboce.com.bo</td>
-                            <td>72342334</td>
-                            <td>72342334</td>
-                        </tr>
-                        <tr>
-                            
-                            <!--<td><input type="checkbox" class="js-switch" checked /></td>-->
-                            <td>3434534</td>
-                            <td>Juana Maria Perez</td>
-                            <td>jperez@soboce.com.bo</td>
-                            <td>72342334</td>
-                            <td>72342334</td>
-                        </tr>
-                        <tr>
-                            <td>3434534</td>
-                            <td>Juana Maria Perez</td>
-                            <td>jperez@soboce.com.bo</td>
-                            <td>72342334</td>
-                            <td>72342334</td>
-                        </tr>
-                        
-                    </tbody>
-                </table>
+                    <div class="table-div">
+                      <table id="datatable-checkbox"
+                      class="table table-bordered bulk_action"
+                      style="width:100%">
+                      <thead>
+                          <tr>
+                              <th>Nº Documento</th>
+                              <th>Nombre y Apellidos</th>
+                              <th>Correo</th>
+                              <th>Telefono</th>
+                              <th>Acciones</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td>3434534</td>
+                              <td>Juana Maria Perez</td>
+                              <td>jperez@soboce.com.bo</td>
+                              <td>72342334</td>
+                              <td>72342334</td>
+                          </tr>
+                          <tr>
+                              
+                              <!--<td><input type="checkbox" class="js-switch" checked /></td>-->
+                              <td>3434534</td>
+                              <td>Juana Maria Perez</td>
+                              <td>jperez@soboce.com.bo</td>
+                              <td>72342334</td>
+                              <td>72342334</td>
+                          </tr>
+                          <tr>
+                              <td>3434534</td>
+                              <td>Juana Maria Perez</td>
+                              <td>jperez@soboce.com.bo</td>
+                              <td>72342334</td>
+                              <td>72342334</td>
+                          </tr>
+                          
+                      </tbody>
+                      </table>
+                    </div>
                     
                 </div>
                 
@@ -221,6 +233,7 @@
     <script type="text/javascript">
       $( document ).ready(function() {
         //select empresa
+        /*
         var urlServer ="http://sistema.mym.com.bo:4000/trabajador/empresa/";
         var token = "";
         var table = $('#datatable-checkbox').DataTable( {
@@ -256,7 +269,7 @@
             },
             { "visible": false,  "targets": [ 2,3 ] }
           ]
-       } );
+       } );*/
         $('#datatable-checkbox tbody').on('click','.btn-info', function(event){
           var tableRef = $('#datatable-checkbox').DataTable();
           console.log(tableRef.row($(this).closest('tr')).data() );
@@ -266,7 +279,22 @@
           var tableRef = $('#datatable-checkbox').DataTable();
           console.log(tableRef.row($(this).closest('tr')).data() );
           console.log("delete");            
-        });      
+        });
+        $('#empresa').on('change', function() {
+          if(this.value!=0){
+            $.ajax({
+              type: 'POST',
+              url: "phpFiles/trabajadores.php", // call your php file
+              data: {EMPRESA:this.value}// pass the parameters needed in php, select option values
+            }) .done(function(data) {
+              $("#datatable-checkbox tbody").html(data)
+            })
+          }
+          
+        });
+        
+          
+            
       });
 
     </script>
