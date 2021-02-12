@@ -230,26 +230,38 @@
     </div>
 
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
-    
+    <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+
     <script type="text/javascript">
       $( document ).ready(function() {
-        $('#data1').on('click','.ti-pencil-alt', function(event){
-                    var id=$(this).closest('tr').children('td.id').text();
-                    console.log(id);
-                    var ubicacion=$(this).closest('tr').children('td.ubicacion').text();
-                    var responsable=$(this).closest('tr').children('td.responsable').text();
-                    var estado=$(this).closest('tr').children('td.estado').text();
-                    var clasificacion=$(this).closest('tr').children('td.clasificacion').text();
-                    var calificacion=$(this).closest('tr').children('td.calificacion').text();
-                    var precio=$(this).closest('tr').children('td.precio').text();
-                    
-                    
-                    $("#clasificacion option").filter(function() {
-                      return $(this).text() == clasificacion;
-                    }).attr('selected', 'selected');
-                    $('#calificacion').val(calificacion);
-                    $('#precio').val(precio);
-                });    
+        var url='';
+        $('#datatable-checkbox').DataTable({
+          "ajax":{
+            "url":url,
+            "dataSrc":""
+          },
+          "columns":[
+            {"data":"ci"},
+            {"data":"nombre"},
+            {"data":"apellido"},
+            {"data":"correo_electronico"},
+            {"data":"telefono"},
+          ]
+        });
+        $('#datatable-checkbox tbody').on('click','.btn btn-info btn-sm', function(event){
+          console.log( table.row( this ).data() );            
+        });    
       });
 
     </script>
@@ -281,18 +293,7 @@
     <script src="../vendors/flot.curvedlines/curvedLines.js"></script>
 
     <script src="../vendors/DateJS/build/date.js"></script>
-    <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-    <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-    <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-    <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-    <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-    <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-    <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-    <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-    <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    
 
     <script src="../vendors/jqvmap/dist/jquery.vmap.js"></script>
     <script src="../vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
