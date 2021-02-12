@@ -162,65 +162,40 @@
                     style="width:100%">
                     <thead>
                         <tr>
-                            <th>Acciones</th>
-                            <th>Cuenta trabajador</th>
-                            <th>Nro Documentos</th>
+                            <th>Nº Documento</th>
                             <th>Nombre y Apellidos</th>
                             <th>Correo</th>
-                            <th>Teléfono</th>
+                            <th>Telefono</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>
-                                <button type="button" class="btn btn-info btn-sm">
-                                    <i class="fa fa-edit"></i>
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </td>
-                            <td><input type="checkbox" class="js-switch" checked /></td>
                             <td>3434534</td>
                             <td>Juana Maria Perez</td>
                             <td>jperez@soboce.com.bo</td>
                             <td>72342334</td>
+                            <td>72342334</td>
                         </tr>
                         <tr>
-                            <td><button type="button" class="btn btn-info btn-sm">
-                                <i class="fa fa-edit"></i>
-                            </button>
-                            <button type="button" class="btn btn-danger btn-sm">
-                                <i class="fa fa-trash"></i>
-                            </button></td>
-                            <td><input type="checkbox" class="js-switch" checked /></td>
+                            
+                            <!--<td><input type="checkbox" class="js-switch" checked /></td>-->
                             <td>3434534</td>
                             <td>Juana Maria Perez</td>
                             <td>jperez@soboce.com.bo</td>
                             <td>72342334</td>
+                            <td>72342334</td>
                         </tr>
                         <tr>
-                            <td><button type="button" class="btn btn-info btn-sm">
-                                <i class="fa fa-edit"></i>
-                            </button>
-                            <button type="button" class="btn btn-danger btn-sm">
-                                <i class="fa fa-trash"></i>
-                            </button></td>
-                            <td><input type="checkbox" class="js-switch" checked /></td>
                             <td>3434534</td>
                             <td>Juana Maria Perez</td>
                             <td>jperez@soboce.com.bo</td>
+                            <td>72342334</td>
                             <td>72342334</td>
                         </tr>
                         
                     </tbody>
                 </table>
-
-
-
-
-                    
-                    
                     
                 </div>
                 
@@ -245,23 +220,53 @@
 
     <script type="text/javascript">
       $( document ).ready(function() {
-        var url='';
-        $('#datatable-checkbox').DataTable({
-          "ajax":{
-            "url":url,
-            "dataSrc":""
+        //select empresa
+        var urlServer ="http://sistema.mym.com.bo:4000/trabajador/empresa/";
+        var token = "";
+        var table = $('#datatable-checkbox').DataTable( {
+          'ajax': {
+              'url': url,
+              'type': 'GET',
+              'beforeSend': function (request) {
+                  request.setRequestHeader("X-JWT-Token", token);
+              }
           },
-          "columns":[
-            {"data":"ci"},
-            {"data":"nombre"},
-            {"data":"apellido"},
-            {"data":"correo_electronico"},
-            {"data":"telefono"},
+          "columns": [
+            { "data": "ci" },
+            { "data": "nombre" },
+            { "data": "primer_apellido" },
+            { "data": "segundo_apellido" },
+            { "data": "correo_electronico" },
+            { "data": "telefono" },
+            
+          ],
+          "columnDefs": [ {
+              "targets": -1,
+              "data": null,
+              "defaultContent": "<button type=\"button\" class=\"btn btn-info btn-sm\"><i class=\"fa fa-edit\"></i></button><button type=\"button\" class=\"btn btn-danger btn-sm\"><i class=\"fa fa-trash\"></i></button>"
+            },
+            {
+                // The `data` parameter refers to the data for the cell (defined by the
+                // `data` option, which defaults to the column being worked with, in
+                // this case `data: 0`.
+                "render": function ( data, type, row ) {
+                    return data +' '+ row[2]+' '+ row[3];
+                },
+                "targets": 1
+            },
+            { "visible": false,  "targets": [ 2,3 ] }
           ]
+       } );
+        $('#datatable-checkbox tbody').on('click','.btn-info', function(event){
+          var tableRef = $('#datatable-checkbox').DataTable();
+          console.log(tableRef.row($(this).closest('tr')).data() );
+          console.log("edit");            
         });
-        $('#datatable-checkbox tbody').on('click','.btn btn-info btn-sm', function(event){
-          console.log( table.row( this ).data() );            
-        });    
+        $('#datatable-checkbox tbody').on('click','.btn-danger', function(event){
+          var tableRef = $('#datatable-checkbox').DataTable();
+          console.log(tableRef.row($(this).closest('tr')).data() );
+          console.log("delete");            
+        });      
       });
 
     </script>
