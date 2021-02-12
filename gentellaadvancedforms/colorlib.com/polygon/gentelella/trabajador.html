@@ -230,6 +230,29 @@
     </div>
 
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    
+    <script type="text/javascript">
+      $( document ).ready(function() {
+        $('#data1').on('click','.ti-pencil-alt', function(event){
+                    var id=$(this).closest('tr').children('td.id').text();
+                    console.log(id);
+                    var ubicacion=$(this).closest('tr').children('td.ubicacion').text();
+                    var responsable=$(this).closest('tr').children('td.responsable').text();
+                    var estado=$(this).closest('tr').children('td.estado').text();
+                    var clasificacion=$(this).closest('tr').children('td.clasificacion').text();
+                    var calificacion=$(this).closest('tr').children('td.calificacion').text();
+                    var precio=$(this).closest('tr').children('td.precio').text();
+                    
+                    
+                    $("#clasificacion option").filter(function() {
+                      return $(this).text() == clasificacion;
+                    }).attr('selected', 'selected');
+                    $('#calificacion').val(calificacion);
+                    $('#precio').val(precio);
+                });    
+      });
+
+    </script>
 
     <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
