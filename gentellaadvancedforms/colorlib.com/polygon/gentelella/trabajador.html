@@ -139,11 +139,23 @@
                 <div class="x_content">  
                     <div class="col-md-6">
                         <label for="empresa">Empresa:</label>
-                        <select id="empresa" class="form-control" required>
-                            <option value="">2020</option>
-                            <option value="press">Press</option>
-                            <option value="net">Internet</option>
-                            <option value="mouth">Word of mouth</option>
+                        <select id="empresa" class="form-control">
+                          <option value="0">Escoger una empresa primero</option>
+                          <?php
+                          $opts = array(
+                              'http' => array(
+                                  'method' => "GET",
+                                  'header' => "X-JWT-Token: " . $_SESSION['TOKEN']
+                              )
+                          );
+                          
+                          $context = stream_context_create($opts);
+                          $x = file_get_contents("http://sistema.mym.com.bo:4000/empresa/", false, $context);
+                          $someArray = json_decode($x, true);
+                          foreach ($someArray as $key => $value) {
+                              echo "<option value=\"" . $value["id"] . "\">" . $value["razon_social"] . "</option>";
+                          }
+                          ?>
                         </select>
                     </div>
                     
@@ -158,71 +170,47 @@
                     <button type="button" class="btn btn-round btn-warning right">
                     Inactivar Cuentas
                     </button>
-
-                    <table id="datatable-checkbox"
-                    class="table table-bordered bulk_action"
-                    style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Modificar</th>
-                            <th>Activo</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <button type="button" class="btn btn-info btn-sm">
-                                    <i class="fa fa-edit"></i>
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </td>
-                            <td><input type="checkbox" class="js-switch" checked /></td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
-                            <td>$320,800</td>
-                        </tr>
-                        <tr>
-                            <td><button type="button" class="btn btn-info btn-sm">
-                                <i class="fa fa-edit"></i>
-                            </button>
-                            <button type="button" class="btn btn-danger btn-sm">
-                                <i class="fa fa-trash"></i>
-                            </button></td>
-                            <td><input type="checkbox" class="js-switch" checked /></td>
-                            <td>Tokyo</td>
-                            <td>63</td>
-                            <td>2011/07/25</td>
-                            <td>$170,750</td>
-                        </tr>
-                        <tr>
-                            <td><button type="button" class="btn btn-info btn-sm">
-                                <i class="fa fa-edit"></i>
-                            </button>
-                            <button type="button" class="btn btn-danger btn-sm">
-                                <i class="fa fa-trash"></i>
-                            </button></td>
-                            <td><input type="checkbox" class="js-switch" checked /></td>
-                            <td>San Francisco</td>
-                            <td>66</td>
-                            <td>2009/01/12</td>
-                            <td>$86,000</td>
-                        </tr>
-                        
-                    </tbody>
-                </table>
-
-
-
-
-                    
-                    
+                    <div class="table-div">
+                      <table id="datatable-checkbox"
+                      class="table table-bordered bulk_action"
+                      style="width:100%">
+                      <thead>
+                          <tr>
+                              <th>Nº Documento</th>
+                              <th>Nombre y Apellidos</th>
+                              <th>Correo</th>
+                              <th>Telefono</th>
+                              <th>Acciones</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td>3434534</td>
+                              <td>Juana Maria Perez</td>
+                              <td>jperez@soboce.com.bo</td>
+                              <td>72342334</td>
+                              <td>72342334</td>
+                          </tr>
+                          <tr>
+                              
+                              <!--<td><input type="checkbox" class="js-switch" checked /></td>-->
+                              <td>3434534</td>
+                              <td>Juana Maria Perez</td>
+                              <td>jperez@soboce.com.bo</td>
+                              <td>72342334</td>
+                              <td>72342334</td>
+                          </tr>
+                          <tr>
+                              <td>3434534</td>
+                              <td>Juana Maria Perez</td>
+                              <td>jperez@soboce.com.bo</td>
+                              <td>72342334</td>
+                              <td>72342334</td>
+                          </tr>
+                          
+                      </tbody>
+                      </table>
+                    </div>
                     
                 </div>
                 
@@ -393,6 +381,88 @@
      
       </script>
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+
+    <script type="text/javascript">
+      $( document ).ready(function() {
+        //select empresa
+        /*
+        var urlServer ="http://sistema.mym.com.bo:4000/trabajador/empresa/";
+        var token = "";
+        var table = $('#datatable-checkbox').DataTable( {
+          'ajax': {
+              'url': url,
+              'type': 'GET',
+              'beforeSend': function (request) {
+                  request.setRequestHeader("X-JWT-Token", token);
+              }
+          },
+          "columns": [
+            { "data": "ci" },
+            { "data": "nombre" },
+            { "data": "primer_apellido" },
+            { "data": "segundo_apellido" },
+            { "data": "correo_electronico" },
+            { "data": "telefono" },
+            
+          ],
+          "columnDefs": [ {
+              "targets": -1,
+              "data": null,
+              "defaultContent": "<button type=\"button\" class=\"btn btn-info btn-sm\"><i class=\"fa fa-edit\"></i></button><button type=\"button\" class=\"btn btn-danger btn-sm\"><i class=\"fa fa-trash\"></i></button>"
+            },
+            {
+                // The `data` parameter refers to the data for the cell (defined by the
+                // `data` option, which defaults to the column being worked with, in
+                // this case `data: 0`.
+                "render": function ( data, type, row ) {
+                    return data +' '+ row[2]+' '+ row[3];
+                },
+                "targets": 1
+            },
+            { "visible": false,  "targets": [ 2,3 ] }
+          ]
+       } );*/
+        $('#datatable-checkbox tbody').on('click','.btn-info', function(event){
+          var tableRef = $('#datatable-checkbox').DataTable();
+          console.log(tableRef.row($(this).closest('tr')).data() );
+          console.log("edit");            
+        });
+        $('#datatable-checkbox tbody').on('click','.btn-danger', function(event){
+          var tableRef = $('#datatable-checkbox').DataTable();
+          console.log(tableRef.row($(this).closest('tr')).data() );
+          console.log("delete");            
+        });
+        $('#empresa').on('change', function() {
+          var empresa = $(this).val();
+          if(empresa=0){
+            $.ajax({
+              type: 'POST',
+              url: "phpFiles/trabajadores.php", // call your php file
+              data: {EMPRESA:this.value}// pass the parameters needed in php, select option values
+            }) .done(function(data) {
+              $("#datatable-checkbox tbody").html(data)
+            })
+          }
+          
+        });
+        
+          
+            
+      });
+
+    </script>
 
     <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -421,18 +491,7 @@
     <script src="../vendors/flot.curvedlines/curvedLines.js"></script>
 
     <script src="../vendors/DateJS/build/date.js"></script>
-    <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-    <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-    <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-    <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-    <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-    <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-    <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-    <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-    <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    
 
     <script src="../vendors/jqvmap/dist/jquery.vmap.js"></script>
     <script src="../vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
