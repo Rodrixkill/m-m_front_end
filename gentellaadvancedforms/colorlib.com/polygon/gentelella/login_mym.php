@@ -92,15 +92,18 @@
         var token;
         var user = document.getElementById("user").value;
         var passwordU = document.getElementById("password").value;
+        console.log(user + passwordU);
        
         $.ajax({
-          method: "GET",
+          method: "POST",
+          contentType: "application/json",
           url: "http://sistema.mym.com.bo:4000/",
-          data: { username: user, password: passwordU },
+          data: JSON.stringify({ username: user, password: passwordU }),
           }).done(function (data) {
-            console.log(data);
+            console.log(data[0].token+" "+data[1]);
           })
           .fail(function (data) {
+            console.log(data);
             alert("Ocurrio un problema con el servidor contactenos");
           });
       });
