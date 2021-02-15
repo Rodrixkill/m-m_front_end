@@ -62,57 +62,11 @@
               class="main_menu_side hidden-print main_menu"
             >
               <div class="menu_section">
-                <h3>General</h3>
-                <ul class="nav side-menu">
-                  <li>
-                    <a
-                      ><i class="fa fa-university"></i> Empresas
-                      <span class="fa fa-chevron-down"></span
-                    ></a>
-                    <ul class="nav child_menu">
-                      <li><a href="form.html">Administrar Empresas</a></li>
-                      <li>
-                        <a href="form_advanced.html">Crear Empresa</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <a
-                      ><i class="fa fa-users"></i> Usuarios
-                      <span class="fa fa-chevron-down"></span
-                    ></a>
-                    <ul class="nav child_menu">
-                      <li>
-                        <a href="general_elements.html">Administrar Usuarios</a>
-                      </li>
-                      <li><a href="media_gallery.html">Crear Usuario</a></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <a
-                      ><i class="fa fa-male"></i> Trabajadores
-                      <span class="fa fa-chevron-down"></span
-                    ></a>
-                    <ul class="nav child_menu">
-                      <li>
-                        <a href="general_elements.html">Administrar Trabajadores</a>
-                      </li>
-                    </ul>
-                  </li>
+              
+              <?php
+                  require("side_bar_mym.html");
+              ?>
 
-                  <li>
-                    <a
-                      ><i class="fa fa-file-excel-o"></i> Reportes
-                      <span class="fa fa-chevron-down"></span
-                    ></a>
-                    <ul class="nav child_menu">
-                      <li>
-                        <a href="general_elements.html">Gestión</a>
-                      </li>
-                      <li><a href="media_gallery.html">Empresas</a></li>
-                    </ul>
-                  </li>
-                </ul>
               </div>
               
             </div>

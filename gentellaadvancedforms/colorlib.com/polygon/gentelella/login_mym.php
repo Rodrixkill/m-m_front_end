@@ -1,9 +1,7 @@
+<?php header('Access-Control-Allow-Origin: *'); ?>
 <!DOCTYPE html>
 <html lang="en">
-  <meta
-    http-equiv="content-type"
-    content="text/html;charset=UTF-8"
-  />
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
@@ -43,6 +41,7 @@
                   class="form-control"
                   placeholder="Usuario"
                   required=""
+                  id="user"
                 />
               </div>
               <div>
@@ -51,24 +50,23 @@
                   class="form-control"
                   placeholder="Contraseña"
                   required=""
+                  id="password"
                 />
               </div>
-              <div
-                    class="alert alert-danger alert-dismissible"
-                    role="alert"
-                  >
-                    <button
-                      type="button"
-                      class="close"
-                      data-dismiss="alert"
-                      aria-label="Close"
-                    >
-                      <span aria-hidden="true">×</span>
-                    </button>
-                    Credenciales Inválidos
+              <div class="alert alert-danger alert-dismissible" role="alert">
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="alert"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">×</span>
+                </button>
+                Credenciales Inválidos
               </div>
               <div>
-                <a class="btn btn-default submit" href="index.html">Conectarse</a>
+                <a class="btn btn-default submit" id="buttonLogIn"
+                  >Conectarse</a>
                 <a class="reset_pass" href="#">Olvide mi contraseña</a>
               </div>
               <div class="clearfix"></div>
@@ -76,7 +74,7 @@
                 <div class="clearfix"></div>
                 <br />
                 <div>
-                  <p>©2021 Todos los derechos reservados, empresa M&M </p>
+                  <p>©2021 Todos los derechos reservados, empresa M&M</p>
                 </div>
               </div>
             </form>
@@ -85,6 +83,29 @@
       </div>
     </div>
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+      window.scrollTo(0, document.body.scrollHeight);
+
+      var button = document.getElementById("buttonLogIn");
+
+      button.addEventListener("click", function () {
+        var token;
+        var user = document.getElementById("user").value;
+        var passwordU = document.getElementById("password").value;
+       
+        $.ajax({
+          method: "GET",
+          url: "http://sistema.mym.com.bo:4000/",
+          data: { username: user, password: passwordU },
+          }).done(function (data) {
+            console.log(data);
+          })
+          .fail(function (data) {
+            alert("Ocurrio un problema con el servidor contactenos");
+          });
+      });
+    </script>
+
     <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../build/js/custom.min.js"></script>
   </body>

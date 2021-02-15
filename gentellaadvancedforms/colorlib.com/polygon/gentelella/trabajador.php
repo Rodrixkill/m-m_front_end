@@ -1,3 +1,6 @@
+<?php
+  require("phpFiles/sessionVerify.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
   <meta
@@ -66,33 +69,9 @@
             >
             <!-- SIDE MENU -->
               <div class="menu_section">
-                
-                <ul class="nav side-menu">
-                  <li>
-                    <a href="empresa.html">
-                      <i class="fa fa-building"></i>
-                      Empresas     
-                    </a>
-                  </li>
-                  <li>
-                    <a href="usuario.html">
-                      <i class="fa fa-users"></i>
-                      Usuarios     
-                    </a>
-                  </li>
-                  <li>
-                    <a href="trabajador.html">
-                      <i class="fa fa-briefcase"></i>
-                      Trabajadores     
-                    </a>
-                  </li>
-                  <li>
-                    <a href="evaluacion.html">
-                      <i class="fa fa-files-o"></i>
-                      Evaluaciones     
-                    </a>
-                  </li>
-                </ul>
+              <?php
+                  require("side_bar_mym.html");
+              ?>
               </div>
             <!-- SIDE MENU -->  
               
