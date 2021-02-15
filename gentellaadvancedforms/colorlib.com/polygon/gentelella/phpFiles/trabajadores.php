@@ -13,10 +13,11 @@
         $someArray = json_decode($x, true);
         foreach ($someArray as $key => $value) {
             echo "<tr>";
-            echo "<td>" . $value["ci"] . "</td>";
-            echo "<td>" . $value["nombre"] . " " . $value["primer_apellido"] . " " . $value["segundo_apellido"] . "</td>";
-            echo "<td>" . $value["correo_electronico"] . "</td>";
-            echo "<td>" . $value["telefono"] . "</td>";
+            echo "<td class=\"ci\">" . $value["ci"] . "</td>";
+            echo "<td class=\"nombre\">" . $value["nombre"] . " " . $value["primer_apellido"] . " " . $value["segundo_apellido"] . "</td>";
+            echo "<td class=\"correo\">" . $value["correo_electronico"] . "</td>";
+            echo "<td class=\"telefono\">" . $value["telefono"] . "</td>";
+            echo "<td class=\"edad\" style=\"display:none;\">" . $value["edad"] . "</td>";
             echo "<td>" . "<button type=\"button\" class=\"btn btn-info btn-sm\"><i class=\"fa fa-edit\"></i></button><button type=\"button\" class=\"btn btn-danger btn-sm\"><i class=\"fa fa-trash\"></i></button>" . "</td>";
             echo "</tr>";
         }

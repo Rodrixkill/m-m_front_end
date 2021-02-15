@@ -69,6 +69,7 @@
             >
             <!-- SIDE MENU -->
               <div class="menu_section">
+                <h3><?php echo $_SESSION['NOMBRE'];?></h3>
               <?php
                   require("side_bar_mym.html");
               ?>
@@ -162,30 +163,8 @@
                               <th>Acciones</th>
                           </tr>
                       </thead>
-                      <tbody>
-                          <tr>
-                              <td>3434534</td>
-                              <td>Juana Maria Perez</td>
-                              <td>jperez@soboce.com.bo</td>
-                              <td>72342334</td>
-                              <td>72342334</td>
-                          </tr>
-                          <tr>
-                              
+                      <tbody>          
                               <!--<td><input type="checkbox" class="js-switch" checked /></td>-->
-                              <td>3434534</td>
-                              <td>Juana Maria Perez</td>
-                              <td>jperez@soboce.com.bo</td>
-                              <td>72342334</td>
-                              <td>72342334</td>
-                          </tr>
-                          <tr>
-                              <td>3434534</td>
-                              <td>Juana Maria Perez</td>
-                              <td>jperez@soboce.com.bo</td>
-                              <td>72342334</td>
-                              <td>72342334</td>
-                          </tr>
                           
                       </tbody>
                       </table>
@@ -343,8 +322,7 @@
           
     </div>
 
-
-    
+    <!--
     <script language="JavaScript">
       function toggle(source) {
        checkboxes = document.getElementsByName('table_records');
@@ -358,7 +336,8 @@
          $('#exampleModalLong form')[0].reset();
          });
      
-      </script>
+      </script>-->
+    
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
@@ -375,66 +354,37 @@
 
     <script type="text/javascript">
       $( document ).ready(function() {
-        //select empresa
-        /*
-        var urlServer ="http://sistema.mym.com.bo:4000/trabajador/empresa/";
-        var token = "";
-        var table = $('#datatable-checkbox').DataTable( {
-          'ajax': {
-              'url': url,
-              'type': 'GET',
-              'beforeSend': function (request) {
-                  request.setRequestHeader("X-JWT-Token", token);
-              }
-          },
-          "columns": [
-            { "data": "ci" },
-            { "data": "nombre" },
-            { "data": "primer_apellido" },
-            { "data": "segundo_apellido" },
-            { "data": "correo_electronico" },
-            { "data": "telefono" },
-            
-          ],
-          "columnDefs": [ {
-              "targets": -1,
-              "data": null,
-              "defaultContent": "<button type=\"button\" class=\"btn btn-info btn-sm\"><i class=\"fa fa-edit\"></i></button><button type=\"button\" class=\"btn btn-danger btn-sm\"><i class=\"fa fa-trash\"></i></button>"
-            },
-            {
-                // The `data` parameter refers to the data for the cell (defined by the
-                // `data` option, which defaults to the column being worked with, in
-                // this case `data: 0`.
-                "render": function ( data, type, row ) {
-                    return data +' '+ row[2]+' '+ row[3];
-                },
-                "targets": 1
-            },
-            { "visible": false,  "targets": [ 2,3 ] }
-          ]
-       } );*/
-        $('#datatable-checkbox tbody').on('click','.btn-info', function(event){
-          var tableRef = $('#datatable-checkbox').DataTable();
-          console.log(tableRef.row($(this).closest('tr')).data() );
-          console.log("edit");            
-        });
-        $('#datatable-checkbox tbody').on('click','.btn-danger', function(event){
-          var tableRef = $('#datatable-checkbox').DataTable();
-          console.log(tableRef.row($(this).closest('tr')).data() );
-          console.log("delete");            
-        });
+        
         $('#empresa').on('change', function() {
           var empresa = $(this).val();
-          if(empresa=0){
+          console.log(empresa);
+          if(empresa!=0){
+            console.log("peticion de tabla");
             $.ajax({
               type: 'POST',
               url: "phpFiles/trabajadores.php", // call your php file
-              data: {EMPRESA:this.value}// pass the parameters needed in php, select option values
-            }) .done(function(data) {
-              $("#datatable-checkbox tbody").html(data)
-            })
+              data: {EMPRESA:empresa}// pass the parameters needed in php, select option values
+            }).done(function(data) {
+              $("#datatable-checkbox").DataTable();
+              $("#datatable-checkbox tbody").html(data);
+              
+            }).fail(function (data) {
+            console.log(data);
+            alert("Ocurrio un problema con el servidor contactenos");
+          });
           }
           
+        });
+
+        $('#datatable-checkbox tbody').on('click','.btn-info', function(event){
+          
+          console.log($(this).closest('tr').children('td.edad').text());
+          console.log("edit");            
+        });
+        $('#datatable-checkbox tbody').on('click','.btn-danger', function(event){
+          
+          console.log($('#datatable-checkbox').row($(this).closest('tr')).data() );
+          console.log("delete");            
         });
         
           

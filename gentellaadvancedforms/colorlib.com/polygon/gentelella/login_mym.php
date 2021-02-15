@@ -92,14 +92,27 @@
         var token;
         var user = document.getElementById("user").value;
         var passwordU = document.getElementById("password").value;
-        console.log(user + passwordU);
-       
+      
         $.ajax({
           method: "POST",
           contentType: "application/json",
           url: "http://sistema.mym.com.bo:4000/",
           data: JSON.stringify({ username: user, password: passwordU }),
           }).done(function (data) {
+            if(data[0].token){
+
+              $.ajax({
+                method: "POST",
+                url: "phpFiles/startSession.php",
+                data: { Permisos: data[1], Nombre: user, Token:data[0].token },
+                }).done(function (data) {
+                  window.open("trabajador.php", "_self");
+                });
+
+              //else
+            }else{
+              alert(data);
+            }
             console.log(data[0].token+" "+data[1]);
           })
           .fail(function (data) {
