@@ -415,6 +415,7 @@ require("phpFiles/sessionVerify.php");
 
       <script type="text/javascript">
         $(document).ready(function() {
+          var token = "<?php echo $_SESSION['TOKEN']; ?>";
           $.extend(true, $.fn.dataTable.defaults, {
             "language": {
               "decimal": ",",
@@ -560,47 +561,107 @@ require("phpFiles/sessionVerify.php");
             $("#telefono").val(telefono);
             $("#correo").val(correo_electronico);
             $("#editModalLong").modal("show");
-           
+
             console.log("edit");
           });
           $('#datatable-trabajadores tbody').on('click', '.btn-danger', function(event) {
+            var ci = tabla.row($(this).parents('tr')).data().ci;
+            var url = "http://sistema.mym.com.bo:4000/trabajador/" + ci;
 
-            console.log(tabla.row($(this).parents('tr')).data());
+            $.ajax({
+              type: "DELETE",
+              url: url,
+              headers: {
+                'X-JWT-Token': token
+              }
+            }).done(function(data) {
+              console.log(data);
+              alert("El usuario fue eliminado exitosamente");
+              location.reload();
+            }).fail(function(data) {
+              console.log(data);
+              alert("Ocurrio un problema con el servidor contactenos");
+            });
             console.log("delete");
           });
           $('#exampleModalLong').on('hidden.bs.modal', function() {
             $('#exampleModalLong form')[0].reset();
           });
-          
+
           $('#edit_trabajador').on('click', function(event) {
-            var token="<?php echo $_SESSION['TOKEN'];?>";
-            var ci=$("#ci").val();
-            var expedido=$("#expedido").val();
-            var nombre=$("#nombre").val();
-            var apmat=$("#apmat").val();
-            var appat=$("#appat").val();
-            var fnac=$("#fnac").val();
-            var sexo=$("#sexo").val();
-            var telefono=$("#telefono").val();
-            var correo=$("#correo").val();
-            var url="http://sistema.mym.com.bo:4000/trabajador/"+ci;
-            console.log(token);
-                    $.ajax({
-                          type: "PUT",
-                          url: url,
-                          headers:{
-                            'X-JWT-Token':token
-                          },
-                          contentType: "application/json",
-                          data: JSON.stringify({expedido:expedido,nombre:nombre,fecha_nacimiento:fnac,sexo:sexo,telefono:telefono,correo_electronico:correo}),
-                        }).done(function(data) {
-                          console.log(data);
-                          alert("El ususuario fue editado exitosamente");
-                          location.reload();
-                        }).fail(function (data){
-                          console.log(data);
-                          alert("Se ingresó un dato incorrecto");
-                        });
+
+            var ci = $("#ci").val();
+            var expedido = $("#expedido").val();
+            var nombre = $("#nombre").val();
+            var apmat = $("#apmat").val();
+            var appat = $("#appat").val();
+            var fnac = $("#fnac").val();
+            var sexo = $("#sexo").val();
+            var telefono = $("#telefono").val();
+            var correo = $("#correo").val();
+            var url = "http://sistema.mym.com.bo:4000/trabajador/" + ci;
+
+            $.ajax({
+              type: "PUT",
+              url: url,
+              headers: {
+                'X-JWT-Token': token
+              },
+              contentType: "application/json",
+              data: JSON.stringify({
+                expedido: expedido,
+                nombre: nombre,
+                fecha_nacimiento: fnac,
+                sexo: sexo,
+                telefono: telefono,
+                correo_electronico: correo
+              }),
+            }).done(function(data) {
+              console.log(data);
+              alert("El usuario fue editado exitosamente");
+              location.reload();
+            }).fail(function(data) {
+              console.log(data);
+              alert("Ocurrio un problema con el servidor contactenos");
+            });
+          });
+
+          $('#nuevo_trabajador').on('click', function(event) {
+
+            var ci = $("#ciA").val();
+            var expedido = $("#expedidoA").val();
+            var nombre = $("#nombreA").val();
+            var apmat = $("#apmatA").val();
+            var appat = $("#appatA").val();
+            var fnac = $("#fnacA").val();
+            var sexo = $("#sexoA").val();
+            var telefono = $("#telefonoA").val();
+            var correo = $("#correoA").val();
+            var url = "http://sistema.mym.com.bo:4000/trabajador";
+
+            $.ajax({
+              type: "POST",
+              url: url,
+              headers: {
+                'X-JWT-Token': token
+              },
+              contentType: "application/json",
+              data: JSON.stringify({
+                expedido: expedido,
+                nombre: nombre,
+                fecha_nacimiento: fnac,
+                sexo: sexo,
+                telefono: telefono,
+                correo_electronico: correo
+              }),
+            }).done(function(data) {
+              console.log(data);
+              alert("El usuario fue creado exitosamente");
+              location.reload();
+            }).fail(function(data) {
+              console.log(data);
+              alert("Ocurrio un problema con el servidor contactenos");
+            });
           });
 
         });
