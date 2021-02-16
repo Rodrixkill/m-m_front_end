@@ -165,11 +165,11 @@ require("phpFiles/sessionVerify.php");
                   <div class="field item form-group">
                     <label class="col-form-label col-md-3 col-sm-3  label-align">Numero de documento<span class="required">*</span></label>
                     <div class="col-md-3 col-sm-3">
-                      <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="apellido_materno" placeholder="" required="required" />
+                      <input class="form-control" id="ciA" data-validate-length-range="6" data-validate-words="2" name="apellido_materno" placeholder="" required="required" />
                     </div>
                     <label class="col-form-label col-md-1 col-sm-3  label-align">Expedido<span class="required">*</span></label>
                     <div class="col-md-2 col-sm-1">
-                      <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="apellido_materno" placeholder="" required="required" />
+                      <input class="form-control" id="expedidoA" data-validate-length-range="6" data-validate-words="2" name="apellido_materno" placeholder="" required="required" />
                     </div>
                   </div>
 
@@ -177,44 +177,44 @@ require("phpFiles/sessionVerify.php");
                   <div class="field item form-group">
                     <label class="col-form-label col-md-3 col-sm-3  label-align">Nombre<span class="required">*</span></label>
                     <div class="col-md-6 col-sm-6">
-                      <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="nombre" placeholder="" required="required" />
+                      <input class="form-control" id="nombreA" data-validate-length-range="6" data-validate-words="2" name="nombre" placeholder="" required="required" />
                     </div>
                   </div>
                   <div class="field item form-group">
                     <label class="col-form-label col-md-3 col-sm-3  label-align">Apellido Paterno<span class="required">*</span></label>
                     <div class="col-md-6 col-sm-6">
-                      <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="apellido_paterno" placeholder="" required="required" />
+                      <input class="form-control" id="appatA" data-validate-length-range="6" data-validate-words="2" name="apellido_paterno" placeholder="" required="required" />
                     </div>
                   </div>
                   <div class="field item form-group">
                     <label class="col-form-label col-md-3 col-sm-3  label-align">Apellido Materno<span class="required">*</span></label>
                     <div class="col-md-6 col-sm-6">
-                      <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="apellido_materno" placeholder="" required="required" />
+                      <input class="form-control" id="apmatA" data-validate-length-range="6" data-validate-words="2" name="apellido_materno" placeholder="" required="required" />
                     </div>
                   </div>
                   <div class="field item form-group">
                     <label class="col-form-label col-md-3 col-sm-3  label-align">Fecha de nacimiento<span class="required">*</span></label>
                     <div class="col-md-6 col-sm-6">
-                      <input class="form-control" class='date' type="date" name="date" required='required'>
+                      <input class="form-control" id="fnacA" class='date' type="date" name="date" required='required'>
                     </div>
                   </div>
                   <div class="field item form-group">
                     <label class="col-form-label col-md-3 col-sm-3  label-align">Sexo<span class="required">*</span></label>
                     <div class="col-md-6 col-sm-6">
-                      <input class="form-control" class='optional' name="sexo" data-validate-length-range="5,15" type="text" />
+                      <input class="form-control" id="sexoA" class='optional' name="sexo" data-validate-length-range="5,15" type="text" />
                     </div>
                   </div>
                   <div class="field item form-group">
                     <label class="col-form-label col-md-3 col-sm-3  label-align">Número de teléfono <span class="required">*</span></label>
                     <div class="col-md-6 col-sm-6">
-                      <input class="form-control" type="number" class='number' name="number" data-validate-minmax="10,100" required='required'>
+                      <input class="form-control" id="telefonoA" type="number" class='number' name="number" data-validate-minmax="10,100" required='required'>
                     </div>
                   </div>
 
                   <div class="field item form-group">
                     <label class="col-form-label col-md-3 col-sm-3  label-align">Correo electrónico<span class="required">*</span></label>
                     <div class="col-md-6 col-sm-6">
-                      <input class="form-control" name="email" class='email' required="required" type="email" />
+                      <input class="form-control" id="correoA" name="email" class='email' required="required" type="email" />
                     </div>
                   </div>
 
@@ -235,7 +235,89 @@ require("phpFiles/sessionVerify.php");
         </div>
 
 
+        <!-- Modal -->
+        <div class="modal fade bd-example-modal-lg" id="editModalLong" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Editar Trabajador</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form action="">
+                  <div class="field item form-group">
+                    <label class="col-form-label col-md-3 col-sm-3  label-align">Numero de documento<span class="required">*</span></label>
+                    <div class="col-md-3 col-sm-3">
+                      <input class="form-control" id="ci" data-validate-length-range="6" data-validate-words="2" name="apellido_materno" placeholder="" required="required" />
+                    </div>
+                    <label class="col-form-label col-md-1 col-sm-3  label-align">Expedido<span class="required">*</span></label>
+                    <div class="col-md-2 col-sm-1">
+                      <input class="form-control" id="expedido" data-validate-length-range="6" data-validate-words="2" name="apellido_materno" placeholder="" required="required" />
+                    </div>
+                  </div>
 
+
+                  <div class="field item form-group">
+                    <label class="col-form-label col-md-3 col-sm-3  label-align">Nombre<span class="required">*</span></label>
+                    <div class="col-md-6 col-sm-6">
+                      <input class="form-control" id="nombre" data-validate-length-range="6" data-validate-words="2" name="nombre" placeholder="" required="required" />
+                    </div>
+                  </div>
+                  <div class="field item form-group">
+                    <label class="col-form-label col-md-3 col-sm-3  label-align">Apellido Paterno<span class="required">*</span></label>
+                    <div class="col-md-6 col-sm-6">
+                      <input class="form-control" id="appat" data-validate-length-range="6" data-validate-words="2" name="apellido_paterno" placeholder="" required="required" />
+                    </div>
+                  </div>
+                  <div class="field item form-group">
+                    <label class="col-form-label col-md-3 col-sm-3  label-align">Apellido Materno<span class="required">*</span></label>
+                    <div class="col-md-6 col-sm-6">
+                      <input class="form-control" id="apmat" data-validate-length-range="6" data-validate-words="2" name="apellido_materno" placeholder="" required="required" />
+                    </div>
+                  </div>
+                  <div class="field item form-group">
+                    <label class="col-form-label col-md-3 col-sm-3  label-align">Fecha de nacimiento<span class="required">*</span></label>
+                    <div class="col-md-6 col-sm-6">
+                      <input class="form-control" id="fnac" class='date' type="date" name="date" required='required'>
+                    </div>
+                  </div>
+                  <div class="field item form-group">
+                    <label class="col-form-label col-md-3 col-sm-3  label-align">Sexo<span class="required">*</span></label>
+                    <div class="col-md-6 col-sm-6">
+                      <input class="form-control" id="sexo" class='optional' name="sexo" data-validate-length-range="5,15" type="text" />
+                    </div>
+                  </div>
+                  <div class="field item form-group">
+                    <label class="col-form-label col-md-3 col-sm-3  label-align">Número de teléfono <span class="required">*</span></label>
+                    <div class="col-md-6 col-sm-6">
+                      <input class="form-control" id="telefono" type="number" class='number' name="number" data-validate-minmax="10,100" required='required'>
+                    </div>
+                  </div>
+
+                  <div class="field item form-group">
+                    <label class="col-form-label col-md-3 col-sm-3  label-align">Correo electrónico<span class="required">*</span></label>
+                    <div class="col-md-6 col-sm-6">
+                      <input class="form-control" id="correo" name="email" class='email' required="required" type="email" />
+                    </div>
+                  </div>
+
+                  <div class="ln_solid">
+                    <div class="form-group">
+                      <div class="col-md-6 offset-md-3">
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="edit_trabajador">Guardar</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
 
         <!-- Modal -->
@@ -415,7 +497,7 @@ require("phpFiles/sessionVerify.php");
                 }
               },
               {
-                "targets": [ 5],
+                "targets": [5],
                 "visible": false
               },
 
@@ -446,20 +528,80 @@ require("phpFiles/sessionVerify.php");
           });
 
           $('#datatable-trabajadores tbody').on('click', '.btn-info', function(event) {
+            var ci = tabla.row($(this).parents('tr')).data().ci;
+            var codigo = tabla.row($(this).parents('tr')).data().codigo;
+            var activo = tabla.row($(this).parents('tr')).data().activo;
+            var antiguedad = tabla.row($(this).parents('tr')).data().antiguedad;
+            var contrasena = tabla.row($(this).parents('tr')).data().contrasena;
+            var correo_electronico = tabla.row($(this).parents('tr')).data().correo_electronico;
+            var edad = tabla.row($(this).parents('tr')).data().edad;
+            var empresa = tabla.row($(this).parents('tr')).data().empresa;
+            var expedido = tabla.row($(this).parents('tr')).data().expedido;
+            var fecha_ingreso = tabla.row($(this).parents('tr')).data().fecha_ingreso;
+            var fecha_nacimiento = tabla.row($(this).parents('tr')).data().fecha_nacimiento;
+            var nombre = tabla.row($(this).parents('tr')).data().nombre;
+            var sexo = tabla.row($(this).parents('tr')).data().sexo;
+            var telefono = tabla.row($(this).parents('tr')).data().telefono;
+            var usuario = tabla.row($(this).parents('tr')).data().usuario;
 
-            console.log(tabla.row( $(this).parents('tr') ).data());
+            var now = new Date(fecha_nacimiento);
 
+            var day = ("0" + now.getDate()).slice(-2);
+            var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+            var fecha = now.getFullYear() + "-" + (month) + "-" + (day);
+            $("#ci").val(ci);
+            $("#expedido").val(expedido);
+            $("#nombre").val(nombre);
+            $("#apmat").val(ci);
+            $("#appat").val(ci);
+            $("#fnac").val(fecha);
+            $("#sexo").val(sexo);
+            $("#telefono").val(telefono);
+            $("#correo").val(correo_electronico);
+            $("#editModalLong").modal("show");
+           
             console.log("edit");
           });
           $('#datatable-trabajadores tbody').on('click', '.btn-danger', function(event) {
 
-            console.log(tabla.row( $(this).parents('tr') ).data());
+            console.log(tabla.row($(this).parents('tr')).data());
             console.log("delete");
           });
           $('#exampleModalLong').on('hidden.bs.modal', function() {
             $('#exampleModalLong form')[0].reset();
           });
-
+          
+          $('#edit_trabajador').on('click', function(event) {
+            var token="<?php echo $_SESSION['TOKEN'];?>";
+            var ci=$("#ci").val();
+            var expedido=$("#expedido").val();
+            var nombre=$("#nombre").val();
+            var apmat=$("#apmat").val();
+            var appat=$("#appat").val();
+            var fnac=$("#fnac").val();
+            var sexo=$("#sexo").val();
+            var telefono=$("#telefono").val();
+            var correo=$("#correo").val();
+            var url="http://sistema.mym.com.bo:4000/trabajador/"+ci;
+            console.log(token);
+                    $.ajax({
+                          type: "PUT",
+                          url: url,
+                          headers:{
+                            'X-JWT-Token':token
+                          },
+                          contentType: "application/json",
+                          data: JSON.stringify({expedido:expedido,nombre:nombre,fecha_nacimiento:fnac,sexo:sexo,telefono:telefono,correo_electronico:correo}),
+                        }).done(function(data) {
+                          console.log(data);
+                          alert("El ususuario fue editado exitosamente");
+                          location.reload();
+                        }).fail(function (data){
+                          console.log(data);
+                          alert("Se ingresó un dato incorrecto");
+                        });
+          });
 
         });
       </script>
