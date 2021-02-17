@@ -1,3 +1,6 @@
+<?php
+require("phpFiles/sessionVerify.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
@@ -61,7 +64,7 @@
           </div>
 
           <div class="sidebar-footer hidden-small">
-            <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+            <a data-toggle="tooltip" data-placement="top" title="Logout" href="phpFiles/logOut.php">
               <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
             </a>
           </div>

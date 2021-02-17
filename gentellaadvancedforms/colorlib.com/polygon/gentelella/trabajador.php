@@ -61,7 +61,7 @@ require("phpFiles/sessionVerify.php");
           </div>
 
           <div class="sidebar-footer hidden-small">
-            <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+            <a data-toggle="tooltip" data-placement="top" title="Logout" href="phpFiles/logOut.php">
               <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
             </a>
           </div>
@@ -120,7 +120,7 @@ require("phpFiles/sessionVerify.php");
             <br></br>
 
             <a class="btn btn-app" data-toggle="modal" data-target="#exampleModalLong"> <i class="fa fa-plus-circle"></i> Agregar </a>
-            <a class="btn btn-app"> <i class="fa fa-file-pdf-o"></i> Export </a>
+            <a class="btn btn-app"data-toggle="modal" data-target="#uploadModal"> <i class="fa fa-file-pdf-o"></i> Importar Trabajadores </a>
             <button type="button" class="btn btn-round btn-info right" data-toggle="modal" data-target="#exampleModalLong2">
               Crear Cuentas
             </button>
@@ -306,6 +306,27 @@ require("phpFiles/sessionVerify.php");
             </div>
           </div>
         </div>
+        <!-- Upload modal -->
+        <div class="modal fade bd-example-modal-lg" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Carga masiva de trabajadores</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              
+              <div class="modal-body">
+                <form action="https://colorlib.com/polygon/gentelella/form_upload.html" class="dropzone"></form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Guardar trabajadores</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
 
         <!-- Modal -->
@@ -403,6 +424,7 @@ require("phpFiles/sessionVerify.php");
 
       <script type="text/javascript">
         $(document).ready(function() {
+          var token = "<?php echo $_SESSION['TOKEN']; ?>";
           $.extend(true, $.fn.dataTable.defaults, {
             "language": {
               "decimal": ",",
@@ -481,7 +503,7 @@ require("phpFiles/sessionVerify.php");
                 "targets": 4,
                 "data": null,
                 render: function(data, type, row, meta) {
-                  return "<button type=\"button\" class=\"btn btn-info btn-sm\"><i class=\"fa fa-edit\"></i></button><button type=\"button\" class=\"btn btn-danger btn-sm\"><i class=\"fa fa-trash\"></i></button>";
+                  return "<button type=\"button\" class=\"btn btn-info btn-sm\">Editar <i class=\"fa fa-edit\"></i></button><button type=\"button\" class=\"btn btn-danger btn-sm\">Eliminar <i class=\"fa fa-trash\"></i></button>";
                 }
               },
               {
@@ -548,47 +570,107 @@ require("phpFiles/sessionVerify.php");
             $("#telefono").val(telefono);
             $("#correo").val(correo_electronico);
             $("#editModalLong").modal("show");
-           
+
             console.log("edit");
           });
           $('#datatable-trabajadores tbody').on('click', '.btn-danger', function(event) {
+            var ci = tabla.row($(this).parents('tr')).data().ci;
+            var url = "http://sistema.mym.com.bo:4000/trabajador/" + ci;
 
-            console.log(tabla.row($(this).parents('tr')).data());
+            $.ajax({
+              type: "DELETE",
+              url: url,
+              headers: {
+                'X-JWT-Token': token
+              }
+            }).done(function(data) {
+              console.log(data);
+              alert("El usuario fue eliminado exitosamente");
+              location.reload();
+            }).fail(function(data) {
+              console.log(data);
+              alert("Ocurrio un problema con el servidor contactenos");
+            });
             console.log("delete");
           });
           $('#exampleModalLong').on('hidden.bs.modal', function() {
             $('#exampleModalLong form')[0].reset();
           });
-          
+
           $('#edit_trabajador').on('click', function(event) {
-            var token="<?php echo $_SESSION['TOKEN'];?>";
-            var ci=$("#ci").val();
-            var expedido=$("#expedido").val();
-            var nombre=$("#nombre").val();
-            var apmat=$("#apmat").val();
-            var appat=$("#appat").val();
-            var fnac=$("#fnac").val();
-            var sexo=$("#sexo").val();
-            var telefono=$("#telefono").val();
-            var correo=$("#correo").val();
-            var url="http://sistema.mym.com.bo:4000/trabajador/"+ci;
-            console.log(token);
-                    $.ajax({
-                          type: "PUT",
-                          url: url,
-                          headers:{
-                            'X-JWT-Token':token
-                          },
-                          contentType: "application/json",
-                          data: JSON.stringify({expedido:expedido,nombre:nombre,fecha_nacimiento:fnac,sexo:sexo,telefono:telefono,correo_electronico:correo}),
-                        }).done(function(data) {
-                          console.log(data);
-                          alert("El ususuario fue editado exitosamente");
-                          location.reload();
-                        }).fail(function (data){
-                          console.log(data);
-                          alert("Se ingresó un dato incorrecto");
-                        });
+
+            var ci = $("#ci").val();
+            var expedido = $("#expedido").val();
+            var nombre = $("#nombre").val();
+            var apmat = $("#apmat").val();
+            var appat = $("#appat").val();
+            var fnac = $("#fnac").val();
+            var sexo = $("#sexo").val();
+            var telefono = $("#telefono").val();
+            var correo = $("#correo").val();
+            var url = "http://sistema.mym.com.bo:4000/trabajador/" + ci;
+
+            $.ajax({
+              type: "PUT",
+              url: url,
+              headers: {
+                'X-JWT-Token': token
+              },
+              contentType: "application/json",
+              data: JSON.stringify({
+                expedido: expedido,
+                nombre: nombre,
+                fecha_nacimiento: fnac,
+                sexo: sexo,
+                telefono: telefono,
+                correo_electronico: correo
+              }),
+            }).done(function(data) {
+              console.log(data);
+              alert("El usuario fue editado exitosamente");
+              location.reload();
+            }).fail(function(data) {
+              console.log(data);
+              alert("Ocurrio un problema con el servidor contactenos");
+            });
+          });
+
+          $('#nuevo_trabajador').on('click', function(event) {
+
+            var ci = $("#ciA").val();
+            var expedido = $("#expedidoA").val();
+            var nombre = $("#nombreA").val();
+            var apmat = $("#apmatA").val();
+            var appat = $("#appatA").val();
+            var fnac = $("#fnacA").val();
+            var sexo = $("#sexoA").val();
+            var telefono = $("#telefonoA").val();
+            var correo = $("#correoA").val();
+            var url = "http://sistema.mym.com.bo:4000/trabajador";
+
+            $.ajax({
+              type: "POST",
+              url: url,
+              headers: {
+                'X-JWT-Token': token
+              },
+              contentType: "application/json",
+              data: JSON.stringify({
+                expedido: expedido,
+                nombre: nombre,
+                fecha_nacimiento: fnac,
+                sexo: sexo,
+                telefono: telefono,
+                correo_electronico: correo
+              }),
+            }).done(function(data) {
+              console.log(data);
+              alert("El usuario fue creado exitosamente");
+              location.reload();
+            }).fail(function(data) {
+              console.log(data);
+              alert("Ocurrio un problema con el servidor contactenos");
+            });
           });
 
         });
@@ -630,6 +712,8 @@ require("phpFiles/sessionVerify.php");
 
       <script src="../vendors/moment/min/moment.min.js"></script>
       <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+      <script src="../vendors/dropzone/dist/min/dropzone.min.js"></script>
 
       <script src="../build/js/custom.min.js"></script>
 </body>
