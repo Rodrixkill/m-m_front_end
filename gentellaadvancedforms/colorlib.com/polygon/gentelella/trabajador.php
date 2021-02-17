@@ -266,18 +266,6 @@ require("phpFiles/sessionVerify.php");
                     </div>
                   </div>
                   <div class="field item form-group">
-                    <label class="col-form-label col-md-3 col-sm-3  label-align">Apellido Paterno<span class="required">*</span></label>
-                    <div class="col-md-6 col-sm-6">
-                      <input class="form-control" id="appat" data-validate-length-range="6" data-validate-words="2" name="apellido_paterno" placeholder="" required="required" />
-                    </div>
-                  </div>
-                  <div class="field item form-group">
-                    <label class="col-form-label col-md-3 col-sm-3  label-align">Apellido Materno<span class="required">*</span></label>
-                    <div class="col-md-6 col-sm-6">
-                      <input class="form-control" id="apmat" data-validate-length-range="6" data-validate-words="2" name="apellido_materno" placeholder="" required="required" />
-                    </div>
-                  </div>
-                  <div class="field item form-group">
                     <label class="col-form-label col-md-3 col-sm-3  label-align">Fecha de nacimiento<span class="required">*</span></label>
                     <div class="col-md-6 col-sm-6">
                       <input class="form-control" id="fnac" class='date' type="date" name="date" required='required'>
