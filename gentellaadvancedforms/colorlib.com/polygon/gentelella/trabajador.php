@@ -266,7 +266,9 @@ require("phpFiles/sessionVerify.php");
                     </div>
                   </div>
                   <div class="field item form-group">
+
                     <label class="col-form-label col-md-3 col-sm-3  label-align">Código<span class="required">*</span></label>
+
                     <div class="col-md-6 col-sm-6">
                       <input class="form-control" id="codigo" data-validate-length-range="6" data-validate-words="2" name="apellido_materno" placeholder="" required="required" />
                     </div>

@@ -44,6 +44,7 @@
                   class="form-control"
                   placeholder="Correo"
                   required=""
+                  id="mail"
                 />
               </div>
               <div
@@ -60,6 +61,7 @@
                     </button>
                     Ingresa un correo electrónico registrado
               </div>
+<input type="button" value="Send Email" id="buttonMail">
               <div>
                 <a class="btn btn-default submit" href="index.html">Confirmar</a>
               </div>
@@ -76,6 +78,40 @@
         </div>
       </div>
     </div>
+    <script type="text/javascript">
+      window.scrollTo(0, document.body.scrollHeight);
+      var button = document.getElementById("buttonMail");
+      button.addEventListener("click", function () {
+        var emailIn = document.getElementById("mail").value;
+        console.log("Click");
+        $.ajax({
+          method: "POST",
+          contentType: "application/json",
+          url: "http://sistema.mym.com.bo:4000/contrasena",
+          data: JSON.stringify({ email: emailIn}),
+          }).done(function (data) {
+            
+            if(data.token){
+              var linkSend = "http//systemmym.com/recuperar_contrasena?token=" + data.token;
+              console.log(linkSend)
+              $.ajax({
+                method: "POST",
+                contentType: "application/json",
+                url: "http://sistema.mym.com.bo:4000/contrasena/sendMail",
+                data: { email: data.email, link: linkSend },
+                }).done(function (data) {
+                  console.log("Mail enviado");
+                });
+            }else{
+              alert(data);
+            }
+          })
+          .fail(function (data) {
+            console.log(data);
+            alert("Ocurrio un problema con el servidor contactenos");
+          });
+      });
+    </script>
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../build/js/custom.min.js"></script>
