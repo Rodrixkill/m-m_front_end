@@ -61,7 +61,7 @@ require("phpFiles/sessionVerify.php");
           </div>
 
           <div class="sidebar-footer hidden-small">
-            <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+            <a data-toggle="tooltip" data-placement="top" title="Logout" href="phpFiles/logOut.php">
               <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
             </a>
           </div>
@@ -489,12 +489,12 @@ require("phpFiles/sessionVerify.php");
               {
                 "data": "edad"
               }
-            ],
+            ],  
             "columnDefs": [{
                 "targets": 4,
                 "data": null,
                 render: function(data, type, row, meta) {
-                  return "<button type=\"button\" class=\"btn btn-info btn-sm\"><i class=\"fa fa-edit\"></i></button><button type=\"button\" class=\"btn btn-danger btn-sm\"><i class=\"fa fa-trash\"></i></button>";
+                  return "<button type=\"button\" class=\"btn btn-info btn-sm\">Editar <i class=\"fa fa-edit\"></i></button><button type=\"button\" class=\"btn btn-danger btn-sm\">Eliminar <i class=\"fa fa-trash\"></i></button>";
                 }
               },
               {
