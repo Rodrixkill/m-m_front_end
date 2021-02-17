@@ -120,7 +120,7 @@ require("phpFiles/sessionVerify.php");
             <br></br>
 
             <a class="btn btn-app" data-toggle="modal" data-target="#exampleModalLong"> <i class="fa fa-plus-circle"></i> Agregar </a>
-            <a class="btn btn-app"> <i class="fa fa-file-pdf-o"></i> Export </a>
+            <a class="btn btn-app"data-toggle="modal" data-target="#uploadModal"> <i class="fa fa-file-pdf-o"></i> Importar Trabajadores </a>
             <button type="button" class="btn btn-round btn-info right" data-toggle="modal" data-target="#exampleModalLong2">
               Crear Cuentas
             </button>
@@ -318,6 +318,27 @@ require("phpFiles/sessionVerify.php");
             </div>
           </div>
         </div>
+        <!-- Upload modal -->
+        <div class="modal fade bd-example-modal-lg" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Carga masiva de trabajadores</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              
+              <div class="modal-body">
+                <form action="https://colorlib.com/polygon/gentelella/form_upload.html" class="dropzone"></form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Guardar trabajadores</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
 
         <!-- Modal -->
@@ -489,7 +510,7 @@ require("phpFiles/sessionVerify.php");
               {
                 "data": "edad"
               }
-            ],  
+            ],
             "columnDefs": [{
                 "targets": 4,
                 "data": null,
@@ -703,6 +724,8 @@ require("phpFiles/sessionVerify.php");
 
       <script src="../vendors/moment/min/moment.min.js"></script>
       <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+      <script src="../vendors/dropzone/dist/min/dropzone.min.js"></script>
 
       <script src="../build/js/custom.min.js"></script>
 </body>
