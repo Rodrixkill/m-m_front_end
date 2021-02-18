@@ -120,7 +120,7 @@ require("phpFiles/sessionVerify.php");
             <br></br>
 
             <a class="btn btn-app" data-toggle="modal" data-target="#exampleModalLong"> <i class="fa fa-plus-circle"></i> Agregar </a>
-            <a class="btn btn-app"data-toggle="modal" data-target="#uploadModal"> <i class="fa fa-file-pdf-o"></i> Importar Trabajadores </a>
+            <a class="btn btn-app" data-toggle="modal" data-target="#uploadModal"> <i class="fa fa-file-pdf-o"></i> Importar Trabajadores </a>
             <button type="button" class="btn btn-round btn-info right" data-toggle="modal" data-target="#exampleModalLong2">
               Crear Cuentas
             </button>
@@ -265,11 +265,11 @@ require("phpFiles/sessionVerify.php");
                   <div class="field item form-group">
                     <label class="col-form-label col-md-3 col-sm-3  label-align">Numero de documento<span class="required">*</span></label>
                     <div class="col-md-3 col-sm-3">
-                      <input class="form-control" id="ci" data-validate-length-range="6" data-validate-words="2" name="apellido_materno" placeholder="" required="required" />
+                      <input class="form-control" id="ci" data-validate-length-range="6" data-validate-words="2" name="apellido_materno" placeholder="" disabled/>
                     </div>
                     <label class="col-form-label col-md-1 col-sm-3  label-align">Expedido<span class="required">*</span></label>
                     <div class="col-md-2 col-sm-1">
-                      <input class="form-control" id="expedido" data-validate-length-range="6" data-validate-words="2" name="apellido_materno" placeholder="" required="required" />
+                      <input class="form-control" id="expedido" data-validate-length-range="6" data-validate-words="2" name="apellido_materno" placeholder=""  disabled/>
                     </div>
                   </div>
 
@@ -281,17 +281,23 @@ require("phpFiles/sessionVerify.php");
                     </div>
                   </div>
                   <div class="field item form-group">
-                    <label class="col-form-label col-md-3 col-sm-3  label-align">Fecha de nacimiento<span class="required">*</span></label>
+
+                    <label class="col-form-label col-md-3 col-sm-3  label-align">Código<span class="required">*</span></label>
+
                     <div class="col-md-6 col-sm-6">
-                      <input class="form-control" id="fnac" class='date' type="date" name="date" required='required'>
+                      <input class="form-control" id="codigo" data-validate-length-range="6" data-validate-words="2" name="apellido_materno" placeholder="" required="required" />
                     </div>
                   </div>
                   <div class="field item form-group">
-                    <label class="col-form-label col-md-3 col-sm-3  label-align">Sexo<span class="required">*</span></label>
+                    <label class="col-form-label col-md-3 col-sm-3  label-align">Activo<span class="required">*</span></label>
                     <div class="col-md-6 col-sm-6">
-                      <input class="form-control" id="sexo" class='optional' name="sexo" data-validate-length-range="5,15" type="text"  />
+                      <select class="form-control" id="activo">
+                        <option value="0">Inactivo</option>
+                        <option value="1">Activo</option>
+                      </select>
                     </div>
                   </div>
+
                   <div class="field item form-group">
                     <label class="col-form-label col-md-3 col-sm-3  label-align">Número de teléfono <span class="required">*</span></label>
                     <div class="col-md-6 col-sm-6">
@@ -331,9 +337,14 @@ require("phpFiles/sessionVerify.php");
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              
+
               <div class="modal-body">
-                <form action="https://colorlib.com/polygon/gentelella/form_upload.html" class="dropzone"></form>
+                <form id='frmTarget' name='dropzone' action='phpFiles/' class='dropzone'>
+                  <div class='fallback'>
+                    <input name='file' type='file' />
+                  </div>
+                  <button type="submit" id="massive" class="btn btn-primary">Agregar</button>
+                </form>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -577,10 +588,8 @@ require("phpFiles/sessionVerify.php");
             $("#ci").val(ci);
             $("#expedido").val(expedido);
             $("#nombre").val(nombre);
-            $("#apmat").val(ci);
-            $("#appat").val(ci);
-            $("#fnac").val(fecha);
-            $("#sexo").val(sexo);
+            $("#activo").val(activo);
+            $("#codigo").val(codigo);
             $("#telefono").val(telefono);
             $("#correo").val(correo_electronico);
             $("#editModalLong").modal("show");
@@ -612,14 +621,10 @@ require("phpFiles/sessionVerify.php");
           });
 
           $('#edit_trabajador').on('click', function(event) {
-
             var ci = $("#ci").val();
-            var expedido = $("#expedido").val();
             var nombre = $("#nombre").val();
-            var apmat = $("#apmat").val();
-            var appat = $("#appat").val();
-            var fnac = $("#fnac").val();
-            var sexo = $("#sexo").val();
+            var activo = $('#activo option:selected').val();
+            var codigo = $("#codigo").val();
             var telefono = $("#telefono").val();
             var correo = $("#correo").val();
             var url = "http://sistema.mym.com.bo:4000/trabajador/" + ci;
@@ -632,10 +637,9 @@ require("phpFiles/sessionVerify.php");
               },
               contentType: "application/json",
               data: JSON.stringify({
-                expedido: expedido,
                 nombre: nombre,
-                fecha_nacimiento: fnac,
-                sexo: sexo,
+                codigo: codigo,
+                activo: activo,
                 telefono: telefono,
                 correo_electronico: correo
               }),
@@ -699,6 +703,34 @@ require("phpFiles/sessionVerify.php");
               alert("Ocurrio un problema con el servidor contactenos");
             });
           });
+
+          Dropzone.options.frmTarget = {
+            paramName: 'file',
+            clickable: true,
+            maxFilesize: 5,
+            uploadMultiple: false,
+            addRemoveLinks: true,
+            autoProcessQueue: false,
+            acceptedFiles: '.csv,.xlsx,.xls',
+            dictDefaultMessage: 'Carga tus archivos aca',
+            init: function() {
+              var myDropzone = this;
+
+              // Update selector to match your button
+              $("#massive").click(function(e) {
+                e.preventDefault();
+                myDropzone.processQueue();
+              });
+
+              this.on('sending', function(file, xhr, formData) {
+                // Append all form inputs to the formData Dropzone will POST
+                var data = $('#frmTarget').serializeArray();
+                $.each(data, function(key, el) {
+                  formData.append(el.name, el.value);
+                });
+              });
+            }
+          };
 
         });
       </script>

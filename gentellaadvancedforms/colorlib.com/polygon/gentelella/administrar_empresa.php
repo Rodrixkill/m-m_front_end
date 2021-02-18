@@ -85,16 +85,6 @@ require("phpFiles/sessionVerify.php");
             <div class="title_left">
               <h3>Administrar Empresas<small></small></h3>
             </div>
-            <div class="title_right">
-              <div class="col-md-5 col-sm-5   form-group pull-right top_search">
-                <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Search for...">
-                  <span class="input-group-btn">
-                    <button class="btn btn-secondary" type="button">Go!</button>
-                  </span>
-                </div>
-              </div>
-            </div>
           </div>
           <div class="clearfix"></div>
           <div class="row">
@@ -105,119 +95,204 @@ require("phpFiles/sessionVerify.php");
 
                   <div class="clearfix"></div>
                 </div>
+                <a class="btn btn-app" data-toggle="modal" data-target="#nuevoModalLong"> <i class="fa fa-plus-circle"></i> Agregar nueva empresa</a>
                 <div class="x_content">
 
-                  <table class="table table-striped projects">
+                  <table id="datatable-empresas" class="table table-striped projects">
                     <thead>
                       <tr>
-                        <th style="width: 1%">#</th>
                         <th style="width: 20%">Razón Social</th>
                         <th>NIT</th>
                         <th>Ciudad</th>
                         <th>Estado</th>
-                        <th style="width: 20%">Editar</th>
+                        <th style="width: 20%">Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>
-                          <a>SOBOCE SA</a>
-                          <br />
-                          <small></small>
-                        </td>
-                        <td>
-                          <a>##############</a>
-                        </td>
-                        <td class="project_progress">
-                          <a>La Paz</a>
-                        </td>
-                        <td>
-                          <span class="badge badge-success">Activa</span>
-                        </td>
-                        <td>
-                          <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                          <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                          <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                        </td>
-                      </tr>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>
-                          <a>Empresa 2</a>
-                          <br />
-                          <small></small>
-                        </td>
-                        <td>
-                          <a>##############</a>
-                        </td>
-                        <td class="project_progress">
-                          <a>La Paz</a>
-                        </td>
-                        <td>
-                          <span class="badge badge-success">Activa</span>
-                        </td>
-                        <td>
-                          <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                          <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                          <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                        </td>
-                      </tr>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>
-                          <a>Empresa 3</a>
-                          <br />
-                          <small></small>
-                        </td>
-                        <td>
-                          <a>##############</a>
-                        </td>
-                        <td class="project_progress">
-                          <a>Santa Cruz</a>
-                        </td>
-                        <td>
-                          <span class="badge badge-success">Activa</span>
-                        </td>
-                        <td>
-                          <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                          <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                          <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                        </td>
-                      </tr>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td>
-                          <a>Empresa 4</a>
-                          <br />
-                          <small></small>
-                        </td>
-                        <td>
-                          <a>##############</a>
-                        </td>
-                        <td class="project_progress">
-                          <a>Cochabamba</a>
-                        </td>
-                        <td>
-                          <span class="badge badge-danger">Inactiva</span>
-                        </td>
-                        <td>
-                          <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                          <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                          <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                        </td>
-                      </tr>
-
-
                     </tbody>
                   </table>
-
+                  <!-- 
+                    <span class="badge badge-success">Activa</span>
+                     <span class="badge badge-danger">Inactiva</span>
+                    <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                          <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                          <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                        -->
                 </div>
               </div>
             </div>
+
+            <!-- Modal -->
+            <div class="modal fade bd-example-modal-lg" id="editModalLong" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Editar Empresa</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form action="">
+                      <div class="field item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3  label-align">Razón Social<span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6">
+                          <input class="form-control" id="razon_social" name="razon_social" placeholder="" disabled />
+                        </div>
+
+                      </div>
+
+                      <div class="field item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3  label-align">Dirección<span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6">
+                          <input class="form-control" id="direccion" data-validate-length-range="100" name="direccion" placeholder="" />
+                        </div>
+                      </div>
+
+                      <div class="field item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3  label-align">Número de teléfono <span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6">
+                          <input class="form-control" id="telefono" type="number" class='number' name="number" data-validate-minmax="10,100" required='required'>
+                        </div>
+                      </div>
+
+                      <div class="field item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3  label-align">CI representante legal <span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6">
+                          <input class="form-control" id="ci_representante_legal" type="number" class='number' name="ci_representante_legal" data-validate-minmax="10,100" required='required'>
+                        </div>
+                      </div>
+
+                      <div class="field item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3  label-align">Representante legal<span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6">
+                          <input class="form-control" id="representante_legal" data-validate-length-range="20" data-validate-words="3" name="representante_legal" placeholder="" required="required" />
+                        </div>
+                      </div>
+
+                      <div class="field item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3  label-align">Activo<span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6">
+                          <select class="form-control" id="activo">
+                            <option value="0">Inactivo</option>
+                            <option value="1">Activo</option>
+                          </select>
+                        </div>
+                      </div>
+
+
+                      <div class="ln_solid">
+                        <div class="form-group">
+                          <div class="col-md-6 offset-md-3">
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="edit_empresa">Guardar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade bd-example-modal-lg" id="nuevoModalLong" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Nueva Empresa</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form action="">
+                      <div class="field item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3  label-align">Razón Social<span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6">
+                          <input class="form-control" id="razon_socialA" name="razon_social" placeholder="" />
+                        </div>
+
+                      </div>
+
+                      <div class="field item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3  label-align">Sigla<span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6">
+                          <input class="form-control" id="siglaA" name="razon_social" placeholder="" />
+                        </div>
+
+                      </div>
+                      <div class="field item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3  label-align">NIT<span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6">
+                          <input class="form-control" id="nitA" data-validate-length-range="100" name="direccion" placeholder="" />
+                        </div>
+                      </div>
+
+                      <div class="field item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3  label-align">Dirección<span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6">
+                          <input class="form-control" id="direccionA" data-validate-length-range="100" name="direccion" placeholder="" />
+                        </div>
+                      </div>
+
+                      <div class="field item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3  label-align">Ciudad<span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6">
+                          <input class="form-control" id="direccionA" data-validate-length-range="30" name="direccion" placeholder="" />
+                        </div>
+                      </div>
+
+                      <div class="field item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3  label-align">Número de teléfono <span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6">
+                          <input class="form-control" id="telefonoA" type="number" class='number' name="number" data-validate-minmax="10,100" required='required'>
+                        </div>
+                      </div>
+
+                      <div class="field item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3  label-align">CI representante legal <span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6">
+                          <input class="form-control" id="ci_representante_legalA" type="number" class='number' name="ci_representante_legal" data-validate-minmax="10,100" required='required'>
+                        </div>
+                      </div>
+
+                      <div class="field item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3  label-align">Representante legal<span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6">
+                          <input class="form-control" id="representante_legalA" data-validate-length-range="20" data-validate-words="3" name="representante_legal" placeholder="" required="required" />
+                        </div>
+                      </div>
+
+                      <div class="field item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3  label-align">Activo<span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6">
+                          <select class="form-control" id="activoA">
+                            <option value="0">Inactivo</option>
+                            <option value="1">Activo</option>
+                          </select>
+                        </div>
+                      </div>
+
+
+                      <div class="ln_solid">
+                        <div class="form-group">
+                          <div class="col-md-6 offset-md-3">
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="nueva_empresa">Guardar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -226,14 +301,285 @@ require("phpFiles/sessionVerify.php");
 
 
 
-
-
-
-
-
-
-
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        var token = "<?php echo $_SESSION['TOKEN']; ?>";
+        $.extend(true, $.fn.dataTable.defaults, {
+          "language": {
+            "decimal": ",",
+            "thousands": ".",
+            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "infoPostFix": "",
+            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "loadingRecords": "Cargando...",
+            "lengthMenu": "Mostrar _MENU_ registros",
+            "paginate": {
+              "first": "Primero",
+              "last": "Último",
+              "next": "Siguiente",
+              "previous": "Anterior"
+            },
+            "processing": "Procesando...",
+            "search": "Buscar:",
+            "searchPlaceholder": "Término de búsqueda",
+            "zeroRecords": "No se encontraron resultados",
+            "emptyTable": "Ningún dato disponible en esta tabla",
+            "aria": {
+              "sortAscending": ": Activar para ordenar la columna de manera ascendente",
+              "sortDescending": ": Activar para ordenar la columna de manera descendente"
+            },
+            //only works for built-in buttons, not for custom buttons
+            "buttons": {
+              "create": "Nuevo",
+              "edit": "Cambiar",
+              "remove": "Borrar",
+              "copy": "Copiar",
+              "csv": "fichero CSV",
+              "excel": "tabla Excel",
+              "pdf": "documento PDF",
+              "print": "Imprimir",
+              "colvis": "Visibilidad columnas",
+              "collection": "Colección",
+              "upload": "Seleccione fichero...."
+            },
+            "select": {
+              "rows": {
+                _: '%d filas seleccionadas',
+                0: 'clic fila para seleccionar',
+                1: 'una fila seleccionada'
+              }
+            }
+          }
+        });
+
+        var tabla = $("#datatable-empresas").DataTable({
+          "ajax": {
+            "url": "phpFiles/empresas.php",
+            dataSrc: ''
+          },
+          "columns": [{
+              "data": "razon_social"
+            },
+            {
+              "data": "nit"
+            },
+            {
+              "data": "ciudad"
+            },
+            {
+              "data": "activo"
+            },
+            {
+              "data": "telefono"
+            }
+          ],
+          "columnDefs": [{
+              "targets": 4,
+              "data": null,
+              render: function(data, type, row, meta) {
+                return "<button type=\"button\" class=\"btn btn-info btn-sm\">Editar <i class=\"fa fa-edit\"></i></button><button type=\"button\" class=\"btn btn-danger btn-sm\">Eliminar <i class=\"fa fa-trash\"></i></button>";
+              }
+            }
+
+          ]
+        });
+
+        $('#nueva_empresa').on('click', function(e) {
+          var id = $("#idA").val();
+          var razon_social = $("#razon_socialA").val();
+          var direccion = $("#direccionA").val();
+          var telefono = $("#telefonoA").val();
+          var sigla = $("#siglaA").val();
+          var nit = $("#nitA").val();
+          var ciudad = $("#ciudadA").val();
+          var representante_legal = $("#representante_legalA").val();
+          var ci_representante_legal = $("#ci_representante_legalA").val();
+          var activo = $('#activoA option:selected').val();
+
+          var now = new Date();
+
+          var day = ("0" + now.getDate()).slice(-2);
+          var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+          var fecha = now.getFullYear() + "-" + (month) + "-" + (day);
+          e.preventDefault();
+          var answer = confirm('Estas seguro de crear un nuevo trabajador?');
+          if (answer) {
+            var url = "http://sistema.mym.com.bo:4000/empresa/";
+
+            $.ajax({
+              type: "POST",
+              url: url,
+              headers: {
+                'X-JWT-Token': token
+              },
+              contentType: "application/json",
+              data: JSON.stringify({
+                sigla: sigla,
+                nit: nit,
+                ciudad: ciudad,
+                razon_social: razon_social,
+                direccion: direccion,
+                representante_legal: representante_legal,
+                telefono: telefono,
+                ci_representante_legal: ci_representante_legal,
+                activo: activo,
+                fecha_alta: fecha
+              }),
+            }).done(function(data) {
+              console.log(data);
+              alert("La empresa fue editada exitosamente");
+              location.reload();
+            }).fail(function(data) {
+              console.log(data);
+              alert("Ocurrio un problema con el servidor contactenos");
+            });
+
+          } else {
+            alert('Operación abortada');
+          }
+        });
+
+
+        $('#datatable-empresas tbody').on('click', '.btn-info', function(event) {
+          var id = tabla.row($(this).parents('tr')).data().id;
+          var razon_social = tabla.row($(this).parents('tr')).data().razon_social;
+          var direccion = tabla.row($(this).parents('tr')).data().direccion;
+          var telefono = tabla.row($(this).parents('tr')).data().telefono;
+          var representante_legal = tabla.row($(this).parents('tr')).data().representante_legal;
+          var ci_representante_legal = tabla.row($(this).parents('tr')).data().ci_representante_legal;
+          var activo = tabla.row($(this).parents('tr')).data().activo;
+
+
+          $("#id").val(id);
+          $("#razon_social").val(razon_social);
+          $("#direccion").val(direccion);
+          $("#telefono").val(telefono);
+          $("#representante_legal").val(representante_legal);
+          $("#ci_representante_legal").val(ci_representante_legal);
+          $("#activo").val(activo);
+          $("#editModalLong").modal("show");
+
+          console.log("edit");
+        });
+        $('#datatable-empresas tbody').on('click', '.btn-danger', function(event) {
+          var id = tabla.row($(this).parents('tr')).data().id;
+          var url = "http://sistema.mym.com.bo:4000/empresa/" + id;
+
+          $.ajax({
+            type: "DELETE",
+            url: url,
+            headers: {
+              'X-JWT-Token': token
+            }
+          }).done(function(data) {
+            console.log(data);
+            alert("La empresa fue eliminado exitosamente");
+            location.reload();
+          }).fail(function(data) {
+            console.log(data);
+            alert("Ocurrio un problema con el servidor contactenos");
+          });
+          console.log("delete");
+        });
+        $('#nuevoModalLong').on('hidden.bs.modal', function() {
+          $('#nuevoModalLong form')[0].reset();
+        });
+
+        $('#edit_empresa').on('click', function(event) {
+          var id = $("#id").val();
+          var razon_social = $("#razon_social").val();
+          var direccion = $("#direccion").val();
+          var telefono = $("#telefono").val();
+          var representante_legal = $("#representante_legal").val();
+          var ci_representante_legal = $("#ci_representante_legal").val();
+          var activo = $('#activo option:selected').val();
+
+          var url = "http://sistema.mym.com.bo:4000/empresa/" + id;
+
+          $.ajax({
+            type: "PUT",
+            url: url,
+            headers: {
+              'X-JWT-Token': token
+            },
+            contentType: "application/json",
+            data: JSON.stringify({
+              razon_social: razon_social,
+              direccion: direccion,
+              representante_legal: representante_legal,
+              telefono: telefono,
+              ci_representante_legal: ci_representante_legal,
+              activo: activo
+            }),
+          }).done(function(data) {
+            console.log(data);
+            alert("La empresa fue editada exitosamente");
+            location.reload();
+          }).fail(function(data) {
+            console.log(data);
+            alert("Ocurrio un problema con el servidor contactenos");
+          });
+        });
+
+        $('#nueva_empresa').on('click', function(event) {
+
+          var ci = $("#ciA").val();
+          var expedido = $("#expedidoA").val();
+          var nombre = $("#nombreA").val();
+          var apmat = $("#apmatA").val();
+          var appat = $("#appatA").val();
+          var fnac = $("#fnacA").val();
+          var sexo = $("#sexoA").val();
+          var telefono = $("#telefonoA").val();
+          var correo = $("#correoA").val();
+          var url = "http://sistema.mym.com.bo:4000/empresa";
+
+          $.ajax({
+            type: "POST",
+            url: url,
+            headers: {
+              'X-JWT-Token': token
+            },
+            contentType: "application/json",
+            data: JSON.stringify({
+              expedido: expedido,
+              nombre: nombre,
+              fecha_nacimiento: fnac,
+              sexo: sexo,
+              telefono: telefono,
+              correo_electronico: correo
+            }),
+          }).done(function(data) {
+            console.log(data);
+            alert("La empresa fue creada exitosamente");
+            location.reload();
+          }).fail(function(data) {
+            console.log(data);
+            alert("Ocurrio un problema con el servidor contactenos");
+          });
+        });
+
+
+      });
+    </script>
+
 
     <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
