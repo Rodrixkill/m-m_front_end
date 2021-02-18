@@ -136,7 +136,7 @@ require("phpFiles/sessionVerify.php");
                     <form action="">
                       <div class="field item form-group">
                         <label class="col-form-label col-md-3 col-sm-3  label-align">Razón Social<span class="required">*</span></label>
-                        <div class="col-md-3 col-sm-3">
+                        <div class="col-md-6 col-sm-6">
                           <input class="form-control" id="razon_social" name="razon_social" placeholder="" disabled />
                         </div>
 
@@ -211,7 +211,7 @@ require("phpFiles/sessionVerify.php");
                     <form action="">
                       <div class="field item form-group">
                         <label class="col-form-label col-md-3 col-sm-3  label-align">Razón Social<span class="required">*</span></label>
-                        <div class="col-md-3 col-sm-3">
+                        <div class="col-md-6 col-sm-6">
                           <input class="form-control" id="razon_socialA" name="razon_social" placeholder="" />
                         </div>
 
@@ -219,7 +219,7 @@ require("phpFiles/sessionVerify.php");
 
                       <div class="field item form-group">
                         <label class="col-form-label col-md-3 col-sm-3  label-align">Sigla<span class="required">*</span></label>
-                        <div class="col-md-3 col-sm-3">
+                        <div class="col-md-6 col-sm-6">
                           <input class="form-control" id="siglaA" name="razon_social" placeholder="" />
                         </div>
 
