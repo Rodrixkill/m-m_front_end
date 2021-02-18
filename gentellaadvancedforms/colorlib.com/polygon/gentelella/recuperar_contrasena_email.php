@@ -83,7 +83,6 @@
       var button = document.getElementById("buttonMail");
       button.addEventListener("click", function () {
         var emailIn = document.getElementById("mail").value;
-        console.log("Click");
         $.ajax({
           method: "POST",
           contentType: "application/json",
@@ -92,16 +91,20 @@
           }).done(function (data) {
             
             if(data.token){
-              var linkSend = "http//systemmym.com/recuperar_contrasena?token=" + data.token;
-              console.log(linkSend)
+              var linkSend = "http://sistema.mym.com/recuperar_contrasena?token=" + data.token;
               $.ajax({
                 method: "POST",
                 contentType: "application/json",
                 url: "http://sistema.mym.com.bo:4000/contrasena/sendMail",
-                data: { email: data.email, link: linkSend },
+                data: JSON.stringify({ 
+                  email: emailIn, 
+                  link: linkSend }),
                 }).done(function (data) {
-                  console.log("Mail enviado");
-                });
+                  alert("Mail enviado");
+                }).fail(function (data) {
+            console.log(data);
+            alert("Ocurrio un problema con el servidor contactenos");
+          });;
             }else{
               alert(data);
             }
