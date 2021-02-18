@@ -95,6 +95,7 @@ require("phpFiles/sessionVerify.php");
 
                   <div class="clearfix"></div>
                 </div>
+                <a class="btn btn-app" data-toggle="modal" data-target="#nuevoModalLong"> <i class="fa fa-plus-circle"></i> Agregar nueva empresa</a>
                 <div class="x_content">
 
                   <table id="datatable-empresas" class="table table-striped projects">
@@ -134,38 +135,17 @@ require("phpFiles/sessionVerify.php");
                   <div class="modal-body">
                     <form action="">
                       <div class="field item form-group">
-                        <label class="col-form-label col-md-3 col-sm-3  label-align">Numero de documento<span class="required">*</span></label>
+                        <label class="col-form-label col-md-3 col-sm-3  label-align">Razón Social<span class="required">*</span></label>
                         <div class="col-md-3 col-sm-3">
-                          <input class="form-control" id="ci" data-validate-length-range="6" data-validate-words="2" name="apellido_materno" placeholder="" disabled />
+                          <input class="form-control" id="razon_social" name="razon_social" placeholder="" disabled />
                         </div>
-                        <label class="col-form-label col-md-1 col-sm-3  label-align">Expedido<span class="required">*</span></label>
-                        <div class="col-md-2 col-sm-1">
-                          <input class="form-control" id="expedido" data-validate-length-range="6" data-validate-words="2" name="apellido_materno" placeholder="" disabled />
-                        </div>
+
                       </div>
 
-
                       <div class="field item form-group">
-                        <label class="col-form-label col-md-3 col-sm-3  label-align">Nombre<span class="required">*</span></label>
+                        <label class="col-form-label col-md-3 col-sm-3  label-align">Dirección<span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6">
-                          <input class="form-control" id="nombre" data-validate-length-range="6" data-validate-words="2" name="nombre" placeholder="" required="required" />
-                        </div>
-                      </div>
-                      <div class="field item form-group">
-
-                        <label class="col-form-label col-md-3 col-sm-3  label-align">Código<span class="required">*</span></label>
-
-                        <div class="col-md-6 col-sm-6">
-                          <input class="form-control" id="codigo" data-validate-length-range="6" data-validate-words="2" name="apellido_materno" placeholder="" required="required" />
-                        </div>
-                      </div>
-                      <div class="field item form-group">
-                        <label class="col-form-label col-md-3 col-sm-3  label-align">Activo<span class="required">*</span></label>
-                        <div class="col-md-6 col-sm-6">
-                          <select class="form-control" id="activo">
-                            <option value="0">Inactivo</option>
-                            <option value="1">Activo</option>
-                          </select>
+                          <input class="form-control" id="direccion" data-validate-length-range="100" name="direccion" placeholder="" />
                         </div>
                       </div>
 
@@ -177,11 +157,29 @@ require("phpFiles/sessionVerify.php");
                       </div>
 
                       <div class="field item form-group">
-                        <label class="col-form-label col-md-3 col-sm-3  label-align">Correo electrónico<span class="required">*</span></label>
+                        <label class="col-form-label col-md-3 col-sm-3  label-align">CI representante legal <span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6">
-                          <input class="form-control" id="correo" name="email" class='email' required="required" type="email" />
+                          <input class="form-control" id="ci_representante_legal" type="number" class='number' name="ci_representante_legal" data-validate-minmax="10,100" required='required'>
                         </div>
                       </div>
+
+                      <div class="field item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3  label-align">Representante legal<span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6">
+                          <input class="form-control" id="representante_legal" data-validate-length-range="20" data-validate-words="3" name="representante_legal" placeholder="" required="required" />
+                        </div>
+                      </div>
+
+                      <div class="field item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3  label-align">Activo<span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6">
+                          <select class="form-control" id="activo">
+                            <option value="0">Inactivo</option>
+                            <option value="1">Activo</option>
+                          </select>
+                        </div>
+                      </div>
+
 
                       <div class="ln_solid">
                         <div class="form-group">
@@ -212,54 +210,72 @@ require("phpFiles/sessionVerify.php");
                   <div class="modal-body">
                     <form action="">
                       <div class="field item form-group">
-                        <label class="col-form-label col-md-3 col-sm-3  label-align">Numero de documento<span class="required">*</span></label>
+                        <label class="col-form-label col-md-3 col-sm-3  label-align">Razón Social<span class="required">*</span></label>
                         <div class="col-md-3 col-sm-3">
-                          <input class="form-control" id="ci" data-validate-length-range="6" data-validate-words="2" name="apellido_materno" placeholder="" disabled />
+                          <input class="form-control" id="razon_socialA" name="razon_social" placeholder="" />
                         </div>
-                        <label class="col-form-label col-md-1 col-sm-3  label-align">Expedido<span class="required">*</span></label>
-                        <div class="col-md-2 col-sm-1">
-                          <input class="form-control" id="expedido" data-validate-length-range="6" data-validate-words="2" name="apellido_materno" placeholder="" disabled />
+
+                      </div>
+
+                      <div class="field item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3  label-align">Sigla<span class="required">*</span></label>
+                        <div class="col-md-3 col-sm-3">
+                          <input class="form-control" id="siglaA" name="razon_social" placeholder="" />
+                        </div>
+
+                      </div>
+                      <div class="field item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3  label-align">NIT<span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6">
+                          <input class="form-control" id="nitA" data-validate-length-range="100" name="direccion" placeholder="" />
                         </div>
                       </div>
 
-
                       <div class="field item form-group">
-                        <label class="col-form-label col-md-3 col-sm-3  label-align">Nombre<span class="required">*</span></label>
+                        <label class="col-form-label col-md-3 col-sm-3  label-align">Dirección<span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6">
-                          <input class="form-control" id="nombre" data-validate-length-range="6" data-validate-words="2" name="nombre" placeholder="" required="required" />
+                          <input class="form-control" id="direccionA" data-validate-length-range="100" name="direccion" placeholder="" />
                         </div>
                       </div>
-                      <div class="field item form-group">
 
-                        <label class="col-form-label col-md-3 col-sm-3  label-align">Código<span class="required">*</span></label>
-
-                        <div class="col-md-6 col-sm-6">
-                          <input class="form-control" id="codigo" data-validate-length-range="6" data-validate-words="2" name="apellido_materno" placeholder="" required="required" />
-                        </div>
-                      </div>
                       <div class="field item form-group">
-                        <label class="col-form-label col-md-3 col-sm-3  label-align">Activo<span class="required">*</span></label>
+                        <label class="col-form-label col-md-3 col-sm-3  label-align">Ciudad<span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6">
-                          <select class="form-control" id="activo">
-                            <option value="0">Inactivo</option>
-                            <option value="1">Activo</option>
-                          </select>
+                          <input class="form-control" id="direccionA" data-validate-length-range="30" name="direccion" placeholder="" />
                         </div>
                       </div>
 
                       <div class="field item form-group">
                         <label class="col-form-label col-md-3 col-sm-3  label-align">Número de teléfono <span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6">
-                          <input class="form-control" id="telefono" type="number" class='number' name="number" data-validate-minmax="10,100" required='required'>
+                          <input class="form-control" id="telefonoA" type="number" class='number' name="number" data-validate-minmax="10,100" required='required'>
                         </div>
                       </div>
 
                       <div class="field item form-group">
-                        <label class="col-form-label col-md-3 col-sm-3  label-align">Correo electrónico<span class="required">*</span></label>
+                        <label class="col-form-label col-md-3 col-sm-3  label-align">CI representante legal <span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6">
-                          <input class="form-control" id="correo" name="email" class='email' required="required" type="email" />
+                          <input class="form-control" id="ci_representante_legalA" type="number" class='number' name="ci_representante_legal" data-validate-minmax="10,100" required='required'>
                         </div>
                       </div>
+
+                      <div class="field item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3  label-align">Representante legal<span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6">
+                          <input class="form-control" id="representante_legalA" data-validate-length-range="20" data-validate-words="3" name="representante_legal" placeholder="" required="required" />
+                        </div>
+                      </div>
+
+                      <div class="field item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3  label-align">Activo<span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6">
+                          <select class="form-control" id="activoA">
+                            <option value="0">Inactivo</option>
+                            <option value="1">Activo</option>
+                          </select>
+                        </div>
+                      </div>
+
 
                       <div class="ln_solid">
                         <div class="form-group">
@@ -276,7 +292,6 @@ require("phpFiles/sessionVerify.php");
                 </div>
               </div>
             </div>
-
 
           </div>
         </div>
@@ -386,11 +401,56 @@ require("phpFiles/sessionVerify.php");
         });
 
         $('#nueva_empresa').on('click', function(e) {
+          var id = $("#idA").val();
+          var razon_social = $("#razon_socialA").val();
+          var direccion = $("#direccionA").val();
+          var telefono = $("#telefonoA").val();
+          var sigla = $("#siglaA").val();
+          var nit = $("#nitA").val();
+          var ciudad = $("#ciudadA").val();
+          var representante_legal = $("#representante_legalA").val();
+          var ci_representante_legal = $("#ci_representante_legalA").val();
+          var activo = $('#activoA option:selected').val();
+
+          var now = new Date();
+
+          var day = ("0" + now.getDate()).slice(-2);
+          var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+          var fecha = now.getFullYear() + "-" + (month) + "-" + (day);
           e.preventDefault();
           var answer = confirm('Estas seguro de crear un nuevo trabajador?');
           if (answer) {
-            alert('Deleted');
-            $('#exampleModalLong form')[0].reset();
+            var url = "http://sistema.mym.com.bo:4000/empresa/";
+
+            $.ajax({
+              type: "POST",
+              url: url,
+              headers: {
+                'X-JWT-Token': token
+              },
+              contentType: "application/json",
+              data: JSON.stringify({
+                sigla: sigla,
+                nit: nit,
+                ciudad: ciudad,
+                razon_social: razon_social,
+                direccion: direccion,
+                representante_legal: representante_legal,
+                telefono: telefono,
+                ci_representante_legal: ci_representante_legal,
+                activo: activo,
+                fecha_alta: fecha
+              }),
+            }).done(function(data) {
+              console.log(data);
+              alert("La empresa fue editada exitosamente");
+              location.reload();
+            }).fail(function(data) {
+              console.log(data);
+              alert("Ocurrio un problema con el servidor contactenos");
+            });
+
           } else {
             alert('Operación abortada');
           }
@@ -398,21 +458,22 @@ require("phpFiles/sessionVerify.php");
 
 
         $('#datatable-empresas tbody').on('click', '.btn-info', function(event) {
-          var ci = tabla.row($(this).parents('tr')).data().ci;
+          var id = tabla.row($(this).parents('tr')).data().id;
+          var razon_social = tabla.row($(this).parents('tr')).data().razon_social;
+          var direccion = tabla.row($(this).parents('tr')).data().direccion;
+          var telefono = tabla.row($(this).parents('tr')).data().telefono;
+          var representante_legal = tabla.row($(this).parents('tr')).data().representante_legal;
+          var ci_representante_legal = tabla.row($(this).parents('tr')).data().ci_representante_legal;
+          var activo = tabla.row($(this).parents('tr')).data().activo;
 
-          var now = new Date(fecha_nacimiento);
 
-          var day = ("0" + now.getDate()).slice(-2);
-          var month = ("0" + (now.getMonth() + 1)).slice(-2);
-
-          var fecha = now.getFullYear() + "-" + (month) + "-" + (day);
-          $("#ci").val(ci);
-          $("#expedido").val(expedido);
-          $("#nombre").val(nombre);
-          $("#activo").val(activo);
-          $("#codigo").val(codigo);
+          $("#id").val(id);
+          $("#razon_social").val(razon_social);
+          $("#direccion").val(direccion);
           $("#telefono").val(telefono);
-          $("#correo").val(correo_electronico);
+          $("#representante_legal").val(representante_legal);
+          $("#ci_representante_legal").val(ci_representante_legal);
+          $("#activo").val(activo);
           $("#editModalLong").modal("show");
 
           console.log("edit");
@@ -442,13 +503,15 @@ require("phpFiles/sessionVerify.php");
         });
 
         $('#edit_empresa').on('click', function(event) {
-          var ci = $("#ci").val();
-          var nombre = $("#nombre").val();
-          var activo = $('#activo option:selected').val();
-          var codigo = $("#codigo").val();
+          var id = $("#id").val();
+          var razon_social = $("#razon_social").val();
+          var direccion = $("#direccion").val();
           var telefono = $("#telefono").val();
-          var correo = $("#correo").val();
-          var url = "http://sistema.mym.com.bo:4000/empresa/" + ci;
+          var representante_legal = $("#representante_legal").val();
+          var ci_representante_legal = $("#ci_representante_legal").val();
+          var activo = $('#activo option:selected').val();
+
+          var url = "http://sistema.mym.com.bo:4000/empresa/" + id;
 
           $.ajax({
             type: "PUT",
@@ -458,11 +521,12 @@ require("phpFiles/sessionVerify.php");
             },
             contentType: "application/json",
             data: JSON.stringify({
-              nombre: nombre,
-              codigo: codigo,
-              activo: activo,
+              razon_social: razon_social,
+              direccion: direccion,
+              representante_legal: representante_legal,
               telefono: telefono,
-              correo_electronico: correo
+              ci_representante_legal: ci_representante_legal,
+              activo: activo
             }),
           }).done(function(data) {
             console.log(data);
