@@ -45,3 +45,4 @@ if (
 <?php
 }
 $_SESSION['LAST_ACTIVITY'] = $time;
+?>

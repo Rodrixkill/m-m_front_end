@@ -24,3 +24,4 @@
             echo "</tr>";
         }*/
         echo json_encode($results);
+        ?>

@@ -13,6 +13,7 @@ $x = file_get_contents("http://sistema.mym.com.bo:4000/trabajador/", false, $con
 //$resultt = var_dump($x);
 
 print_r($x);
+?>
 
 
         
