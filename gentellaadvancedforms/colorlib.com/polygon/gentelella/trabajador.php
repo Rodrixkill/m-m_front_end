@@ -161,15 +161,25 @@ require("phpFiles/sessionVerify.php");
                 </button>
               </div>
               <div class="modal-body">
-                <form action="">
+                <form action="" id="nuevoTrabajadorForm">
                   <div class="field item form-group">
-                    <label class="col-form-label col-md-3 col-sm-3  label-align">Numero de documento<span class="required">*</span></label>
-                    <div class="col-md-3 col-sm-3">
+                    <label class="col-form-label col-md-3 col-sm-3  label-align">Número de documento<span class="required">*</span></label>
+                    <div class="col-md-2 col-sm-3">
                       <input class="form-control" id="ciA" data-validate-length-range="6" data-validate-words="2" name="apellido_materno" placeholder="" required="required" />
                     </div>
                     <label class="col-form-label col-md-1 col-sm-3  label-align">Expedido<span class="required">*</span></label>
-                    <div class="col-md-2 col-sm-1">
-                      <input class="form-control" id="expedidoA" data-validate-length-range="6" data-validate-words="2" name="apellido_materno" placeholder="" required="required" />
+                    <div class="col-md-3 col-sm-1">
+                    <select class="form-control" id="expedidoA">
+                        <option>La Paz</option>
+                        <option>Santa Cruz</option>
+                        <option>Cochabamba</option>
+                        <option>Potosí</option>
+                        <option>Oruro</option>
+                        <option>Chuquisaca</option>
+                        <option>Tarija</option>
+                        <option>Pando</option>
+                        <option>Beni</option>
+                      </select>
                     </div>
                   </div>
 
@@ -181,40 +191,45 @@ require("phpFiles/sessionVerify.php");
                     </div>
                   </div>
                   <div class="field item form-group">
-                    <label class="col-form-label col-md-3 col-sm-3  label-align">Apellido Paterno<span class="required">*</span></label>
-                    <div class="col-md-6 col-sm-6">
-                      <input class="form-control" id="appatA" data-validate-length-range="6" data-validate-words="2" name="apellido_paterno" placeholder="" required="required" />
-                    </div>
-                  </div>
-                  <div class="field item form-group">
-                    <label class="col-form-label col-md-3 col-sm-3  label-align">Apellido Materno<span class="required">*</span></label>
-                    <div class="col-md-6 col-sm-6">
-                      <input class="form-control" id="apmatA" data-validate-length-range="6" data-validate-words="2" name="apellido_materno" placeholder="" required="required" />
-                    </div>
-                  </div>
-                  <div class="field item form-group">
                     <label class="col-form-label col-md-3 col-sm-3  label-align">Fecha de nacimiento<span class="required">*</span></label>
                     <div class="col-md-6 col-sm-6">
-                      <input class="form-control" id="fnacA" class='date' type="date" name="date" required='required'>
+                      <input class="form-control" id="fnacA" class='date' type="date" name="date" >
+                      
                     </div>
                   </div>
                   <div class="field item form-group">
                     <label class="col-form-label col-md-3 col-sm-3  label-align">Sexo<span class="required">*</span></label>
                     <div class="col-md-6 col-sm-6">
-                      <input class="form-control" id="sexoA" class='optional' name="sexo" data-validate-length-range="5,15" type="text" />
+                    <select class="form-control" id="sexoA">
+                        <option>Femenino</option>
+                        <option>Masculino</option>
+                      </select>
+                      
                     </div>
                   </div>
                   <div class="field item form-group">
-                    <label class="col-form-label col-md-3 col-sm-3  label-align">Número de teléfono <span class="required">*</span></label>
+                    <label class="col-form-label col-md-3 col-sm-3  label-align">Código<span class="required"></span></label>
+                    <div class="col-md-6 col-sm-6">
+                      <input class="form-control" id="codigoA" class='optional' name="sexo" data-validate-length-range="5,15" type="text" />
+                    </div>
+                  </div>
+                  <div class="field item form-group">
+                    <label class="col-form-label col-md-3 col-sm-3  label-align">Número de teléfono <span class="required"></span></label>
                     <div class="col-md-6 col-sm-6">
                       <input class="form-control" id="telefonoA" type="number" class='number' name="number" data-validate-minmax="10,100" required='required'>
                     </div>
                   </div>
 
                   <div class="field item form-group">
-                    <label class="col-form-label col-md-3 col-sm-3  label-align">Correo electrónico<span class="required">*</span></label>
+                    <label class="col-form-label col-md-3 col-sm-3  label-align">Correo electrónico<span class="required"></span></label>
                     <div class="col-md-6 col-sm-6">
                       <input class="form-control" id="correoA" name="email" class='email' required="required" type="email" />
+                    </div>
+                  </div>
+                  <div class="field item form-group">
+                    <label class="col-form-label col-md-3 col-sm-3  label-align">Fecha de ingreso<span class="required">*</span></label>
+                    <div class="col-md-6 col-sm-6">
+                      <input class="form-control" id="fingA" class='date' type="date" name="date" required='required'>
                     </div>
                   </div>
 
@@ -538,8 +553,7 @@ require("phpFiles/sessionVerify.php");
             e.preventDefault();
             var answer = confirm('Estas seguro de crear un nuevo trabajador?');
             if (answer) {
-              alert('Deleted');
-              $('#exampleModalLong form')[0].reset();
+              
             } else {
               alert('Operación abortada');
             }
@@ -649,18 +663,20 @@ require("phpFiles/sessionVerify.php");
           });
 
           $('#nuevo_trabajador').on('click', function(event) {
-
-            var ci = $("#ciA").val();
+            var fechaActual = new Date();
+            var ci = document.getElementById("ciA").value;
             var expedido = $("#expedidoA").val();
-            var nombre = $("#nombreA").val();
-            var apmat = $("#apmatA").val();
-            var appat = $("#appatA").val();
-            var fnac = $("#fnacA").val();
+            var codigo = $("#codigoA").val();
             var sexo = $("#sexoA").val();
+            var empresa = $("#empresa").val();
             var telefono = $("#telefonoA").val();
+            var fnac = new Date($("#fnacA").val());
+            var edad = Math.round((fechaActual.getTime() - fnac.getTime())/(1000*60*60*24*365));
+            var nombre = $("#nombreA").val();
             var correo = $("#correoA").val();
+            var fing = new Date($("#fingA").val());
+            var antiguedad = Math.round((fechaActual.getTime() - fing.getTime())/(1000*60*60*24*365));
             var url = "http://sistema.mym.com.bo:4000/trabajador";
-
             $.ajax({
               type: "POST",
               url: url,
@@ -669,16 +685,27 @@ require("phpFiles/sessionVerify.php");
               },
               contentType: "application/json",
               data: JSON.stringify({
+                ci: ci,
                 expedido: expedido,
-                nombre: nombre,
-                fecha_nacimiento: fnac,
+                codigo: codigo,
                 sexo: sexo,
+                empresa: empresa,
                 telefono: telefono,
-                correo_electronico: correo
+                fecha_nacimiento: fnac,
+                edad: edad,
+                nombre: nombre,
+                correo_electronico: correo,
+                usuario: "",
+                contrasena: "",
+                fecha_ingreso: fing,
+                antiguedad: antiguedad,
+                activo: 1,
+
               }),
             }).done(function(data) {
               console.log(data);
               alert("El usuario fue creado exitosamente");
+              $('#exampleModalLong form')[0].reset();
               location.reload();
             }).fail(function(data) {
               console.log(data);
