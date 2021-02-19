@@ -18,11 +18,30 @@ if (!(isset($_SESSION['TOKEN']))) {
     if (!$x) {
         session_start();
         session_destroy();
-    ?>
+?>
         <script language="javascript">
-        alert("Expiro tu tiempo de session expiro vuelva a logearse");
-        window.location.href = "../login_mym.php";
+            alert("Expiro tu tiempo de session expiro vuelva a logearse");
+            window.location.href = "../login_mym.php";
         </script>
-    <?php   
+    <?php
     }
 }
+$time = $_SERVER['REQUEST_TIME'];
+
+$timeout_duration = 3600;
+
+if (
+    isset($_SESSION['LAST_ACTIVITY']) &&
+    ($time - $_SESSION['LAST_ACTIVITY']) > $timeout_duration
+) {
+    session_unset();
+    session_destroy();
+    session_start();
+    ?>
+    <script language="javascript">
+        alert("Expiro tu tiempo de session expiro vuelva a logearse");
+        window.location.href = "../login_mym.php";
+    </script>
+<?php
+}
+$_SESSION['LAST_ACTIVITY'] = $time;

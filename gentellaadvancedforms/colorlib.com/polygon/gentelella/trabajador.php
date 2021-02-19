@@ -99,16 +99,6 @@ require("phpFiles/sessionVerify.php");
               <select id="empresa" class="form-control">
                 <option value="0">Escoger una empresa primero</option>
                 <?php
-                $opts = array(
-                  'http' => array(
-                    'method' => "GET",
-                    'header' => "X-JWT-Token: " . $_SESSION['TOKEN']
-                  )
-                );
-
-                $context = stream_context_create($opts);
-                $x = file_get_contents("http://sistema.mym.com.bo:4000/empresa/", false, $context);
-                $someArray = json_decode($x, true);
                 foreach ($someArray as $key => $value) {
                   echo "<option value=\"" . $value["id"] . "\">" . $value["razon_social"] . "</option>";
                 }
