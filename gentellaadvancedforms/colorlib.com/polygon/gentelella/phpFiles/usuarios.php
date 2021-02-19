@@ -1,5 +1,5 @@
 <?php
-require("sessionVerify.php");
+require("sessionVerifyPhp.php");
 $opts = array(
     'http' => array(
         'method' => "GET",
