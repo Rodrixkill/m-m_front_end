@@ -250,11 +250,11 @@ require("phpFiles/sessionVerify.php");
                   <div class="field item form-group">
                     <label class="col-form-label col-md-3 col-sm-3  label-align">Numero de documento<span class="required">*</span></label>
                     <div class="col-md-3 col-sm-3">
-                      <input class="form-control" id="ci" data-validate-length-range="6" data-validate-words="2" name="apellido_materno" placeholder="" disabled/>
+                      <input class="form-control" id="ci" data-validate-length-range="6" data-validate-words="2" name="apellido_materno" placeholder="" disabled />
                     </div>
                     <label class="col-form-label col-md-1 col-sm-3  label-align">Expedido<span class="required">*</span></label>
                     <div class="col-md-2 col-sm-1">
-                      <input class="form-control" id="expedido" data-validate-length-range="6" data-validate-words="2" name="apellido_materno" placeholder=""  disabled/>
+                      <input class="form-control" id="expedido" data-validate-length-range="6" data-validate-words="2" name="apellido_materno" placeholder="" disabled />
                     </div>
                   </div>
 
@@ -435,6 +435,15 @@ require("phpFiles/sessionVerify.php");
 
       <script type="text/javascript">
         $(document).ready(function() {
+          $.ajaxSetup({
+            error: function(xhr, status, err) {
+              if (xhr.status == 401) {
+                alert("Expiro tu tiempo de session expiro vuelva a logearse");
+                window.location.href = "login_mym.php";
+              }
+
+            }
+          });
           var token = "<?php echo $_SESSION['TOKEN']; ?>";
           $.extend(true, $.fn.dataTable.defaults, {
             "language": {
@@ -585,7 +594,7 @@ require("phpFiles/sessionVerify.php");
           $('#datatable-trabajadores tbody').on('click', '.btn-danger', function(event) {
             var ci = tabla.row($(this).parents('tr')).data().ci;
             var url = "http://sistema.mym.com.bo:4000/trabajador/" + ci;
-
+            console.log(token);
             $.ajax({
               type: "DELETE",
               url: url,
