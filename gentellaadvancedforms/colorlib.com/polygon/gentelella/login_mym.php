@@ -88,6 +88,7 @@
               url: "phpFiles/startSession.php",
               data: {
                 Permisos: data[1],
+                Empresa:data[2],
                 Nombre: user,
                 Token: data[0].token
               },
