@@ -39,7 +39,7 @@ if (
     ?>
     <script language="javascript">
         alert("Expiro tu tiempo de session expiro vuelva a logearse");
-        window.location.href = "../login_mym.php";
+        window.location.href = "login_mym.php";
     </script>
 <?php
 }
