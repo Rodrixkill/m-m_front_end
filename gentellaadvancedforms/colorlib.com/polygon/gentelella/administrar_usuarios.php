@@ -56,7 +56,7 @@ require("phpFiles/sessionVerify.php");
             <div class="menu_section">
 
               <?php
-              require("side_bar_mym.html");
+              require("side_bar_mym.php");
               ?>
 
             </div>
@@ -103,9 +103,15 @@ require("phpFiles/sessionVerify.php");
                   <select id="empresa" class="form-control">
                     <option value="0">Escoger una empresa primero</option>
                     <?php
-                    
+
                     foreach ($someArray as $key => $value) {
-                      echo "<option value=\"" . $value["id"] . "\">" . $value["razon_social"] . "</option>";
+                      if ($_SESSION["PERMISOS"] != "ADMIN_MM") {
+                        if ($_SESSION["EMPRESA"] == $value["id"]) {
+                          echo "<option value=\"" . $value["id"] . "\">" . $value["razon_social"] . "</option>";
+                        }
+                      } else {
+                        echo "<option value=\"" . $value["id"] . "\">" . $value["razon_social"] . "</option>";
+                      }
                     }
                     ?>
                   </select>
@@ -209,7 +215,14 @@ require("phpFiles/sessionVerify.php");
                                   <option value="0">Escoger una empresa primero</option>
                                   <?php
                                   foreach ($someArray as $key => $value) {
-                                    echo "<option value=\"" . $value["id"] . "\">" . $value["razon_social"] . "</option>";
+
+                                    if ($_SESSION["PERMISOS"] != "ADMIN_MM") {
+                                      if ($_SESSION["EMPRESA"] == $value["id"]) {
+                                        echo "<option value=\"" . $value["id"] . "\">" . $value["razon_social"] . "</option>";
+                                      }
+                                    } else {
+                                      echo "<option value=\"" . $value["id"] . "\">" . $value["razon_social"] . "</option>";
+                                    }
                                   }
                                   ?>
                                 </select>

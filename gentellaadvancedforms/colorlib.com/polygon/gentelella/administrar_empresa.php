@@ -49,7 +49,7 @@ require("phpFiles/sessionVerify.php");
             <div class="menu_section">
 
               <?php
-              require("side_bar_mym.html");
+              require("side_bar_mym.php");
               ?>
 
             </div>
