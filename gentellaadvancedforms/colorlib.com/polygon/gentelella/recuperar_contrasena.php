@@ -13,20 +13,20 @@
     <title>M&M</title>
 
     <link
-      href="../vendors/bootstrap/dist/css/bootstrap.min.css"
+      href="gentellaadvancedforms/colorlib.com/polygon/vendors/bootstrap/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
 
     <link
-      href="../vendors/font-awesome/css/font-awesome.min.css"
+      href="gentellaadvancedforms/colorlib.com/polygon/vendors/font-awesome/css/font-awesome.min.css"
       rel="stylesheet"
     />
 
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet" />
+    <link href="gentellaadvancedforms/colorlib.com/polygon/vendors/nprogress/nprogress.css" rel="stylesheet" />
 
-    <link href="../vendors/animate.css/animate.min.css" rel="stylesheet" />
+    <link href="gentellaadvancedforms/colorlib.com/polygon/vendors/animate.css/animate.min.css" rel="stylesheet" />
 
-    <link href="../build/css/custom.min.css" rel="stylesheet" />
+    <link href="gentellaadvancedforms/colorlib.com/polygon/build/css/custom.min.css" rel="stylesheet" />
   </head>
   <body class="login">
     <div>

@@ -11,15 +11,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>M&M</title>
 
-  <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="gentellaadvancedforms/colorlib.com/polygon/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-  <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+  <link href="gentellaadvancedforms/colorlib.com/polygon/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 
-  <link href="../vendors/nprogress/nprogress.css" rel="stylesheet" />
+  <link href="gentellaadvancedforms/colorlib.com/polygon/vendors/nprogress/nprogress.css" rel="stylesheet" />
 
-  <link href="../vendors/animate.css/animate.min.css" rel="stylesheet" />
+  <link href="gentellaadvancedforms/colorlib.com/polygon/vendors/animate.css/animate.min.css" rel="stylesheet" />
 
-  <link href="../build/css/custom.min.css" rel="stylesheet" />
+  <link href="gentellaadvancedforms/colorlib.com/polygon/build/css/custom.min.css" rel="stylesheet" />
 </head>
 
 <body class="login">
@@ -60,7 +60,7 @@
       </div>
     </div>
   </div>
-  <script src="../vendors/jquery/dist/jquery.min.js"></script>
+  <script src="gentellaadvancedforms/colorlib.com/polygon/vendors/jquery/dist/jquery.min.js"></script>
   <script type="text/javascript">
     window.scrollTo(0, document.body.scrollHeight);
 
@@ -113,8 +113,8 @@
     });
   </script>
 
-  <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../build/js/custom.min.js"></script>
+  <script src="gentellaadvancedforms/colorlib.com/polygon/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="gentellaadvancedforms/colorlib.com/polygon/build/js/custom.min.js"></script>
 </body>
 
 </html>

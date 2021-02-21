@@ -1,6 +1,6 @@
 <?php
 
-require '../../vendors/phpoffice_phpspreadsheet/vendor/autoload.php';
+require 'gentellaadvancedforms/colorlib.com/polygon/vendors/phpoffice_phpspreadsheet/vendor/autoload.php';
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;

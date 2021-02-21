@@ -14,18 +14,18 @@
     <title>M&M</title>
 
     <link
-      href="../vendors/bootstrap/dist/css/bootstrap.min.css"
+      href="gentellaadvancedforms/colorlib.com/polygon/vendors/bootstrap/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
 
     <link
-      href="../vendors/font-awesome/css/font-awesome.min.css"
+      href="gentellaadvancedforms/colorlib.com/polygon/vendors/font-awesome/css/font-awesome.min.css"
       rel="stylesheet"
     />
 
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet" />
+    <link href="gentellaadvancedforms/colorlib.com/polygon/vendors/nprogress/nprogress.css" rel="stylesheet" />
 
-    <link href="../build/css/custom.min.css" rel="stylesheet" />
+    <link href="gentellaadvancedforms/colorlib.com/polygon/build/css/custom.min.css" rel="stylesheet" />
   </head>
   <body class="nav-md">
     <div class="container body">
@@ -64,15 +64,15 @@
       </div>
     </div>
 
-    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <script src="gentellaadvancedforms/colorlib.com/polygon/vendors/jquery/dist/jquery.min.js"></script>
 
-    <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="gentellaadvancedforms/colorlib.com/polygon/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <script src="gentellaadvancedforms/colorlib.com/polygon/vendors/fastclick/lib/fastclick.js"></script>
 
-    <script src="../vendors/nprogress/nprogress.js"></script>
+    <script src="gentellaadvancedforms/colorlib.com/polygon/vendors/nprogress/nprogress.js"></script>
 
-    <script src="../build/js/custom.min.js"></script>
+    <script src="gentellaadvancedforms/colorlib.com/polygon/build/js/custom.min.js"></script>
   </body>
 
   <!-- Mirrored from colorlib.com/polygon/gentelella/page_404.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 01 Feb 2021 16:33:47 GMT -->
