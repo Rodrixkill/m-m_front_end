@@ -348,6 +348,17 @@ require("phpFiles/sessionVerify.php");
       <script language="JavaScript">
         $(document).ready(function() {
           var token = "<?php echo $_SESSION['TOKEN']; ?>";
+          $.ajaxSetup({
+            error: function(xhr, status, err) {
+              if (xhr.status == 401) {
+                alert("Expiro tu tiempo de session expiro vuelva a logearse");
+                window.location.href = "login_mym.php";
+              } else {
+                alert("Ocurrio un problema con el servidor contactenos");
+              }
+
+            }
+          });
           $.extend(true, $.fn.dataTable.defaults, {
             "language": {
               "decimal": ",",
@@ -468,10 +479,7 @@ require("phpFiles/sessionVerify.php");
               console.log(data);
               alert("La empresa fue eliminado exitosamente");
               location.reload();
-            }).fail(function(data) {
-              console.log(data);
-              alert("Ocurrio un problema con el servidor contactenos");
-            });
+            })
             console.log("delete");
           });
 
@@ -501,10 +509,7 @@ require("phpFiles/sessionVerify.php");
               console.log(data);
               alert("La empresa fue editada exitosamente");
               location.reload();
-            }).fail(function(data) {
-              console.log(data);
-              alert("Ocurrio un problema con el servidor contactenos");
-            });
+            })
           });
 
           $('#nuevo_usuario').on('click', function(event) {
@@ -542,10 +547,7 @@ require("phpFiles/sessionVerify.php");
               console.log(data);
               alert("La empresa fue creada exitosamente");
               location.reload();
-            }).fail(function(data) {
-              console.log(data);
-              alert("Ocurrio un problema con el servidor contactenos");
-            });
+            })
           });
 
 

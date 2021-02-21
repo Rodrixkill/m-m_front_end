@@ -451,6 +451,8 @@ require("phpFiles/sessionVerify.php");
               if (xhr.status == 401) {
                 alert("Expiro tu tiempo de session expiro vuelva a logearse");
                 window.location.href = "login_mym.php";
+              }else{
+                alert("Ocurrio un problema con el servidor contactenos");
               }
 
             }
@@ -615,10 +617,7 @@ require("phpFiles/sessionVerify.php");
               console.log(data);
               alert("El usuario fue eliminado exitosamente");
               location.reload();
-            }).fail(function(data) {
-              console.log(data);
-              alert("Ocurrio un problema con el servidor contactenos");
-            });
+            })
             console.log("delete");
           });
           $('#exampleModalLong').on('hidden.bs.modal', function() {
@@ -703,10 +702,7 @@ require("phpFiles/sessionVerify.php");
               alert("El usuario fue creado exitosamente");
               $('#exampleModalLong form')[0].reset();
               location.reload();
-            }).fail(function(data) {
-              console.log(data);
-              alert("Ocurrio un problema con el servidor contactenos");
-            });
+            })
           });
 
           Dropzone.options.frmTarget = {
