@@ -53,7 +53,7 @@ require("phpFiles/sessionVerify.php");
             <div class="menu_section">
               <h3><?php echo $_SESSION['NOMBRE']; ?></h3>
               <?php
-              require("side_bar_mym.html");
+              require("side_bar_mym.php");
               ?>
             </div>
             <!-- SIDE MENU -->
@@ -100,7 +100,13 @@ require("phpFiles/sessionVerify.php");
                 <option value="0">Escoger una empresa primero</option>
                 <?php
                 foreach ($someArray as $key => $value) {
-                  echo "<option value=\"" . $value["id"] . "\">" . $value["razon_social"] . "</option>";
+                  if ($_SESSION["PERMISOS"] != "ADMIN_MM") {
+                    if ($_SESSION["EMPRESA"] == $value["id"]) {
+                      echo "<option value=\"" . $value["id"] . "\">" . $value["razon_social"] . "</option>";
+                    }
+                  } else {
+                    echo "<option value=\"" . $value["id"] . "\">" . $value["razon_social"] . "</option>";
+                  }
                 }
                 ?>
               </select>
@@ -159,7 +165,7 @@ require("phpFiles/sessionVerify.php");
                     </div>
                     <label class="col-form-label col-md-1 col-sm-3  label-align">Expedido<span class="required">*</span></label>
                     <div class="col-md-3 col-sm-1">
-                    <select class="form-control" id="expedidoA">
+                      <select class="form-control" id="expedidoA">
                         <option>La Paz</option>
                         <option>Santa Cruz</option>
                         <option>Cochabamba</option>
@@ -183,18 +189,18 @@ require("phpFiles/sessionVerify.php");
                   <div class="field item form-group">
                     <label class="col-form-label col-md-3 col-sm-3  label-align">Fecha de nacimiento<span class="required">*</span></label>
                     <div class="col-md-6 col-sm-6">
-                      <input class="form-control" id="fnacA" class='date' type="date" name="date" >
-                      
+                      <input class="form-control" id="fnacA" class='date' type="date" name="date">
+
                     </div>
                   </div>
                   <div class="field item form-group">
                     <label class="col-form-label col-md-3 col-sm-3  label-align">Sexo<span class="required">*</span></label>
                     <div class="col-md-6 col-sm-6">
-                    <select class="form-control" id="sexoA">
+                      <select class="form-control" id="sexoA">
                         <option>Femenino</option>
                         <option>Masculino</option>
                       </select>
-                      
+
                     </div>
                   </div>
                   <div class="field item form-group">
@@ -445,6 +451,8 @@ require("phpFiles/sessionVerify.php");
               if (xhr.status == 401) {
                 alert("Expiro tu tiempo de session expiro vuelva a logearse");
                 window.location.href = "login_mym.php";
+              }else{
+                alert("Ocurrio un problema con el servidor contactenos");
               }
 
             }
@@ -543,7 +551,7 @@ require("phpFiles/sessionVerify.php");
             e.preventDefault();
             var answer = confirm('Estas seguro de crear un nuevo trabajador?');
             if (answer) {
-              
+
             } else {
               alert('Operación abortada');
             }
@@ -609,10 +617,7 @@ require("phpFiles/sessionVerify.php");
               console.log(data);
               alert("El usuario fue eliminado exitosamente");
               location.reload();
-            }).fail(function(data) {
-              console.log(data);
-              alert("Ocurrio un problema con el servidor contactenos");
-            });
+            })
             console.log("delete");
           });
           $('#exampleModalLong').on('hidden.bs.modal', function() {
@@ -661,11 +666,11 @@ require("phpFiles/sessionVerify.php");
             var empresa = $("#empresa").val();
             var telefono = $("#telefonoA").val();
             var fnac = new Date($("#fnacA").val());
-            var edad = Math.round((fechaActual.getTime() - fnac.getTime())/(1000*60*60*24*365));
+            var edad = Math.round((fechaActual.getTime() - fnac.getTime()) / (1000 * 60 * 60 * 24 * 365));
             var nombre = $("#nombreA").val();
             var correo = $("#correoA").val();
             var fing = new Date($("#fingA").val());
-            var antiguedad = Math.round((fechaActual.getTime() - fing.getTime())/(1000*60*60*24*365));
+            var antiguedad = Math.round((fechaActual.getTime() - fing.getTime()) / (1000 * 60 * 60 * 24 * 365));
             var url = "http://sistema.mym.com.bo:4000/trabajador";
             $.ajax({
               type: "POST",
@@ -697,10 +702,7 @@ require("phpFiles/sessionVerify.php");
               alert("El usuario fue creado exitosamente");
               $('#exampleModalLong form')[0].reset();
               location.reload();
-            }).fail(function(data) {
-              console.log(data);
-              alert("Ocurrio un problema con el servidor contactenos");
-            });
+            })
           });
 
           Dropzone.options.frmTarget = {

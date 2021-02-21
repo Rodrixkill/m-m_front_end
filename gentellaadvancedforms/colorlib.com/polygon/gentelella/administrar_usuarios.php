@@ -56,7 +56,7 @@ require("phpFiles/sessionVerify.php");
             <div class="menu_section">
 
               <?php
-              require("side_bar_mym.html");
+              require("side_bar_mym.php");
               ?>
 
             </div>
@@ -103,9 +103,15 @@ require("phpFiles/sessionVerify.php");
                   <select id="empresa" class="form-control">
                     <option value="0">Escoger una empresa primero</option>
                     <?php
-                    
+
                     foreach ($someArray as $key => $value) {
-                      echo "<option value=\"" . $value["id"] . "\">" . $value["razon_social"] . "</option>";
+                      if ($_SESSION["PERMISOS"] != "ADMIN_MM") {
+                        if ($_SESSION["EMPRESA"] == $value["id"]) {
+                          echo "<option value=\"" . $value["id"] . "\">" . $value["razon_social"] . "</option>";
+                        }
+                      } else {
+                        echo "<option value=\"" . $value["id"] . "\">" . $value["razon_social"] . "</option>";
+                      }
                     }
                     ?>
                   </select>
@@ -209,7 +215,14 @@ require("phpFiles/sessionVerify.php");
                                   <option value="0">Escoger una empresa primero</option>
                                   <?php
                                   foreach ($someArray as $key => $value) {
-                                    echo "<option value=\"" . $value["id"] . "\">" . $value["razon_social"] . "</option>";
+
+                                    if ($_SESSION["PERMISOS"] != "ADMIN_MM") {
+                                      if ($_SESSION["EMPRESA"] == $value["id"]) {
+                                        echo "<option value=\"" . $value["id"] . "\">" . $value["razon_social"] . "</option>";
+                                      }
+                                    } else {
+                                      echo "<option value=\"" . $value["id"] . "\">" . $value["razon_social"] . "</option>";
+                                    }
                                   }
                                   ?>
                                 </select>
@@ -335,6 +348,17 @@ require("phpFiles/sessionVerify.php");
       <script language="JavaScript">
         $(document).ready(function() {
           var token = "<?php echo $_SESSION['TOKEN']; ?>";
+          $.ajaxSetup({
+            error: function(xhr, status, err) {
+              if (xhr.status == 401) {
+                alert("Expiro tu tiempo de session expiro vuelva a logearse");
+                window.location.href = "login_mym.php";
+              } else {
+                alert("Ocurrio un problema con el servidor contactenos");
+              }
+
+            }
+          });
           $.extend(true, $.fn.dataTable.defaults, {
             "language": {
               "decimal": ",",
@@ -455,10 +479,7 @@ require("phpFiles/sessionVerify.php");
               console.log(data);
               alert("La empresa fue eliminado exitosamente");
               location.reload();
-            }).fail(function(data) {
-              console.log(data);
-              alert("Ocurrio un problema con el servidor contactenos");
-            });
+            })
             console.log("delete");
           });
 
@@ -488,10 +509,7 @@ require("phpFiles/sessionVerify.php");
               console.log(data);
               alert("La empresa fue editada exitosamente");
               location.reload();
-            }).fail(function(data) {
-              console.log(data);
-              alert("Ocurrio un problema con el servidor contactenos");
-            });
+            })
           });
 
           $('#nuevo_usuario').on('click', function(event) {
@@ -529,10 +547,7 @@ require("phpFiles/sessionVerify.php");
               console.log(data);
               alert("La empresa fue creada exitosamente");
               location.reload();
-            }).fail(function(data) {
-              console.log(data);
-              alert("Ocurrio un problema con el servidor contactenos");
-            });
+            })
           });
 
 

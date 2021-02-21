@@ -1,10 +1,16 @@
 <ul class="nav side-menu">
+  <?php
+  if($_SESSION["PERMISOS"]=="ADMIN_MM"){
+  ?>
   <li>
     <a href="administrar_empresa.php">
       <i class="fa fa-building"></i>
       Empresas
     </a>
   </li>
+  <?php
+  }
+  ?>
   <li>
     <a href="administrar_usuarios.php">
       <i class="fa fa-users"></i>
