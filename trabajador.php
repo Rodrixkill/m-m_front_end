@@ -39,8 +39,9 @@ require("phpFiles/sessionVerify.php");
     <div class="main_container">
       <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
-          <div class="navbar nav_title" style="border: 0">
-            <a href="index.html" class="site_title"><i class="fa fa-home"></i> <span>Módulo M&M Admin</span></a>
+          <div class="navbar nav_title" style="border: 0; margin-bottom:10px;">
+            <img src="mym/polygon/gentelella/images/m-m-Logo.png" style="height:100px;" class="rounded mx-auto d-block" alt="Responsive image">
+            
           </div>
           <div class="clearfix"></div>
 

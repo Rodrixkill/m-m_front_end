@@ -29,8 +29,9 @@
     <div class="login_wrapper">
       <div class="animate form login_form">
         <section class="login_content">
+        <img src="mym/polygon/gentelella/images/cropped-MM-3.png" class="img-fluid" alt="Responsive image">
           <form>
-            <h1>M&M</h1>
+            
             <div>
               <input type="text" class="form-control" placeholder="Usuario" required="" id="user" />
             </div>
