@@ -8,7 +8,7 @@ $opts = array(
 );
 
 $context = stream_context_create($opts);
-$x = file_get_contents("http://sistema.mym.com.bo:4000/trabajador/", false, $context);
+$x = file_get_contents("https://sistema.mym.com.bo:8443/trabajador/", false, $context);
 
 //$resultt = var_dump($x);
 

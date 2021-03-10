@@ -13,7 +13,7 @@ if (!(isset($_SESSION['TOKEN']))) {
     );
 
     $context = stream_context_create($opts);
-    $x = file_get_contents("http://sistema.mym.com.bo:4000/empresa/", false, $context);
+    $x = file_get_contents("https://sistema.mym.com.bo:8443/empresa/", false, $context);
     $someArray = json_decode($x, true);
     if (!$x) {
         session_start();

@@ -65,7 +65,7 @@
         $.ajax({
           method: "POST",
           contentType: "application/json",
-          url: "http://sistema.mym.com.bo:4000/contrasena",
+          url: "https://sistema.mym.com.bo:8443/contrasena",
           data: JSON.stringify({ email: emailIn}),
           }).done(function (data) {
             
@@ -74,7 +74,7 @@
               $.ajax({
                 method: "POST",
                 contentType: "application/json",
-                url: "http://sistema.mym.com.bo:4000/contrasena/sendMail",
+                url: "https://sistema.mym.com.bo:8443/contrasena/sendMail",
                 data: JSON.stringify({ 
                   email: emailIn, 
                   link: linkSend }),

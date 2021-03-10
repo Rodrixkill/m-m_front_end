@@ -432,7 +432,7 @@ require("phpFiles/sessionVerify.php");
           e.preventDefault();
           var answer = confirm('Estas seguro de crear un nuevo trabajador?');
           if (answer) {
-            var url = "http://sistema.mym.com.bo:4000/empresa/";
+            var url = "https://sistema.mym.com.bo:8443/empresa/";
 
             $.ajax({
               type: "POST",
@@ -488,7 +488,7 @@ require("phpFiles/sessionVerify.php");
         });
         $('#datatable-empresas tbody').on('click', '.btn-danger', function(event) {
           var id = tabla.row($(this).parents('tr')).data().id;
-          var url = "http://sistema.mym.com.bo:4000/empresa/" + id;
+          var url = "https://sistema.mym.com.bo:8443/empresa/" + id;
 
           $.ajax({
             type: "DELETE",
@@ -516,7 +516,7 @@ require("phpFiles/sessionVerify.php");
           var ci_representante_legal = $("#ci_representante_legal").val();
           var activo = $('#activo option:selected').val();
 
-          var url = "http://sistema.mym.com.bo:4000/empresa/" + id;
+          var url = "https://sistema.mym.com.bo:8443/empresa/" + id;
 
           $.ajax({
             type: "PUT",
@@ -551,7 +551,7 @@ require("phpFiles/sessionVerify.php");
           var sexo = $("#sexoA").val();
           var telefono = $("#telefonoA").val();
           var correo = $("#correoA").val();
-          var url = "http://sistema.mym.com.bo:4000/empresa";
+          var url = "https://sistema.mym.com.bo:8443/empresa";
 
           $.ajax({
             type: "POST",

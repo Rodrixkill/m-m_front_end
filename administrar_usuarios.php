@@ -467,7 +467,7 @@ require("phpFiles/sessionVerify.php");
           });
           $('#usuarios tbody').on('click', '.btn-danger', function(event) {
             var ci = tabla.row($(this).parents('tr')).data().ci;
-            var url = "http://sistema.mym.com.bo:4000/usuario/" + ci;
+            var url = "https://sistema.mym.com.bo:8443/usuario/" + ci;
 
             $.ajax({
               type: "DELETE",
@@ -490,7 +490,7 @@ require("phpFiles/sessionVerify.php");
             var activo = $("#activo").val();
             var correo = $("#correo").val();
 
-            var url = "http://sistema.mym.com.bo:4000/usuario/" + ci;
+            var url = "https://sistema.mym.com.bo:8443/usuario/" + ci;
 
             $.ajax({
               type: "PUT",
@@ -522,7 +522,7 @@ require("phpFiles/sessionVerify.php");
             var activo = $("#activoA option:selected").val();
             var correo = $("#correoA").val();
             var tipo = $("#tipoA").val();
-            var url = "http://sistema.mym.com.bo:4000/empresa";
+            var url = "https://sistema.mym.com.bo:8443/empresa";
             var permisos = "";
 
             $.ajax({

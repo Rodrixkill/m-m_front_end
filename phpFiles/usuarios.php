@@ -8,7 +8,7 @@ $opts = array(
 );
 
 $context = stream_context_create($opts);
-$x = file_get_contents("http://sistema.mym.com.bo:4000/usuario/empresa/" . $_GET['EMPRESA'] , false, $context);
+$x = file_get_contents("https://sistema.mym.com.bo:8443/usuario/empresa/" . $_GET['EMPRESA'] , false, $context);
 $results = json_decode($x, true);
 echo json_encode($results);
 ?>

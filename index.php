@@ -45,7 +45,8 @@
               Credenciales Inválidos  Ingrese su usuario y contraseña correctamente
             </div>
             <div>
-              <a class="btn btn-default submit" id="buttonLogIn">Conectarse</a>
+            <button id="buttonLogIn" type="button" class="btn btn-info">Conectarse</button>
+
               <a class="reset_pass" href="#">Olvide mi contraseña</a>
             </div>
             <div class="clearfix"></div>
@@ -75,7 +76,7 @@
       $.ajax({
           method: "POST",
           contentType: "application/json",
-          url: "http://sistema.mym.com.bo:4000/",
+          url: "https://sistema.mym.com.bo:8443/",
           data: JSON.stringify({
             username: user,
             password: passwordU

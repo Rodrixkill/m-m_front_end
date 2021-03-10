@@ -7,7 +7,7 @@ $opts = array(
 );
 
 $context = stream_context_create($opts);
-$x = file_get_contents("http://sistema.mym.com.bo:4000/trabajador/empresa/" . $_SESSION['EMPRESA'], false, $context);
+$x = file_get_contents("https://sistema.mym.com.bo:8443/trabajador/empresa/" . $_SESSION['EMPRESA'], false, $context);
 $someArray = json_decode($x, true);
 foreach ($someArray as $key => $value) {
     echo "<tr>";
@@ -29,7 +29,7 @@ $opts = array(
 );
 
 $context = stream_context_create($opts);
-$x = file_get_contents("http://sistema.mym.com.bo:4000/empresa/", false, $context);
+$x = file_get_contents("https://sistema.mym.com.bo:8443/empresa/", false, $context);
 $someArray = json_decode($x, true);
 foreach ($someArray as $key => $value) {
     echo "<option value=\"" . $value["id"] . "\">" . $value["razon_social"] . "</option>";
@@ -45,7 +45,7 @@ $opts = array(
 );
 
 $context = stream_context_create($opts);
-$x = file_get_contents("http://sistema.mym.com.bo:4000/trabajador/empresa/" . $_SESSION['EMPRESA'], false, $context);
+$x = file_get_contents("https//sistema.mym.com.bo:8443/trabajador/empresa/" . $_SESSION['EMPRESA'], false, $context);
 $someArray = json_decode($x, true);
 foreach ($someArray as $key => $value) {
     echo "<tr>";

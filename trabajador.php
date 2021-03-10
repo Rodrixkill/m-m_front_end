@@ -118,10 +118,10 @@ require("phpFiles/sessionVerify.php");
 
             <a class="btn btn-app" data-toggle="modal" data-target="#exampleModalLong"> <i class="fa fa-plus-circle"></i> Agregar </a>
             <a class="btn btn-app" data-toggle="modal" data-target="#uploadModal"> <i class="fa fa-file-pdf-o"></i> Importar Trabajadores </a>
-            <button type="button" class="btn btn-round btn-info right" data-toggle="modal" data-target="#exampleModalLong2">
+            <button type="button" class="btn btn-round btn-info right" data-toggle="modal" data-target="#exampleModalLong2" hidden>
               Crear Cuentas
             </button>
-            <button type="button" class="btn btn-round btn-warning right">
+            <button type="button" class="btn btn-round btn-warning right" hidden>
               Inactivar Cuentas
             </button>
             <div class="table-div">
@@ -606,7 +606,7 @@ require("phpFiles/sessionVerify.php");
           });
           $('#datatable-trabajadores tbody').on('click', '.btn-danger', function(event) {
             var ci = tabla.row($(this).parents('tr')).data().ci;
-            var url = "http://sistema.mym.com.bo:4000/trabajador/" + ci;
+            var url = "https://sistema.mym.com.bo:8443/trabajador/" + ci;
             console.log(token);
             $.ajax({
               type: "DELETE",
@@ -632,7 +632,7 @@ require("phpFiles/sessionVerify.php");
             var codigo = $("#codigo").val();
             var telefono = $("#telefono").val();
             var correo = $("#correo").val();
-            var url = "http://sistema.mym.com.bo:4000/trabajador/" + ci;
+            var url = "https://sistema.mym.com.bo:8443/trabajador/" + ci;
 
             $.ajax({
               type: "PUT",
@@ -672,7 +672,7 @@ require("phpFiles/sessionVerify.php");
             var correo = $("#correoA").val();
             var fing = new Date($("#fingA").val());
             var antiguedad = Math.round((fechaActual.getTime() - fing.getTime()) / (1000 * 60 * 60 * 24 * 365));
-            var url = "http://sistema.mym.com.bo:4000/trabajador";
+            var url = "https://sistema.mym.com.bo:8443/trabajador";
             $.ajax({
               type: "POST",
               url: url,

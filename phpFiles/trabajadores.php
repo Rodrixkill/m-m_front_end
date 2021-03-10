@@ -9,7 +9,7 @@
         );
 
         $context = stream_context_create($opts);
-        $x = file_get_contents("http://sistema.mym.com.bo:4000/trabajador/empresa/" . $_GET['EMPRESA'], false, $context);
+        $x = file_get_contents("https://sistema.mym.com.bo:8443/trabajador/empresa/" . $_GET['EMPRESA'], false, $context);
         $results = json_decode($x, true);
         /*foreach ($someArray as $key => $value) {
             echo "<tr>";
